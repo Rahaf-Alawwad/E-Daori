@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        minLength: [3, "First name must be more then 3 characters"],
+        minLength: [2, "First name must be more then 3 characters"],
         maxLength: [99, "This is too much man.... Chillll..."]
     },
     emailAddress: {
@@ -37,9 +37,9 @@ const userSchema = mongoose.Schema({
 });
 
 // VerifyPassword
-/* userSchema.methods.verifyPassword = function(password){
+userSchema.methods.verifyPassword = function(password){
     return bcrypt.compareSync(password, this.password);
-} */
+} 
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
