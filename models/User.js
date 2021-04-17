@@ -26,10 +26,10 @@ const userSchema = mongoose.Schema({
     },
     favoriteTeams:[{type: String}]
     ,
-    voteMatchs:[{
+    voteMatchs:[[{
         type : mongoose.Schema.Types.ObjectId , 
         ref : 'Match'
-    },{type:String}]
+    },{type:String}]]
 },
 {
 // means createdAt and updatedAt

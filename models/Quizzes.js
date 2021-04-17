@@ -27,5 +27,5 @@ const quizzesSchema = mongoose.Schema({
 
 
 
-const Match = mongoose.model("quiz", matchSchema);
-module.exports = Match;
+const Quiz = mongoose.model("Quiz", quizzesSchema);
+module.exports = Quiz;
