@@ -11,6 +11,7 @@ const User = require("../models/User");
 router.get('/auth/signup', (req, res) => {
     res.render("user/signup")
 })
+
 // HTTP GET - ROOT ROUTE OF OUR APPLICATION
 router.post('/auth/signup', (req, res) => {
 let newUser = new User(req.body);

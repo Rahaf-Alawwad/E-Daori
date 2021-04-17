@@ -5,6 +5,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+const fetch = require('node-fetch')
+//let myHeaders = require('header');
+const axios = require("axios");
 
 mongoose.connect(
     process.env.mongoDBURL,
@@ -38,6 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// Sharing information to other pages
 app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
     next();
@@ -45,6 +49,9 @@ app.use((req,res,next)=>{
 
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
+app.use(require('./routes/home'))
+app.use(require('./routes/profile'))
+
 
 
 app.get('/' , (req ,res ) => {
@@ -52,10 +59,15 @@ app.get('/' , (req ,res ) => {
 if (req.user) {
     res.redirect('/auth/signup')
 }else {
-    res.redirect('/home/index')
+    res.redirect('/fetch')
 }
 
 })
+
+
+
+
+
   app.listen(PORT, () => {
     console.log(`Running on PORT  ${PORT}`);
   });
