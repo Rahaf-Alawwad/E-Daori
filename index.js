@@ -5,9 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-const fetch = require('node-fetch')
-//let myHeaders = require('header');
-const axios = require("axios");
+
 
 mongoose.connect(
     process.env.mongoDBURL,
@@ -57,16 +55,13 @@ app.use(require('./routes/profile'))
 app.get('/' , (req ,res ) => {
 
 if (req.user) {
-    res.redirect('/auth/signup')
+  res.redirect('/home')
 }else {
-    res.redirect('/fetch')
+  res.redirect('/auth/signup')
+    
 }
 
 })
-
-
-
-
 
   app.listen(PORT, () => {
     console.log(`Running on PORT  ${PORT}`);

@@ -1,6 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
+const axios = require("axios");
+
 
 router.get('/test', (req,res)=>{
 
@@ -11,7 +13,8 @@ router.get('/test', (req,res)=>{
     };
     
     axios.request(options).then(function (response) {
-      res.json(response.data);
+        res.render("home/home" , {response : response.data});
+        
     }).catch(function (error) {
       console.error(error);
     });
@@ -28,7 +31,7 @@ router.get('/test', (req,res)=>{
         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
       }
     };
-    
+   
     axios.request(options).then(function (response) {
       res.json(response.data);
     }).catch(function (error) {

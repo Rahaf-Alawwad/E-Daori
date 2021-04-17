@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
     voteMatchs:[{
         type : mongoose.Schema.Types.ObjectId , 
         ref : 'Match'
-    }]
+    },{type:String}]
 },
 {
 // means createdAt and updatedAt

@@ -20,7 +20,7 @@ let hash = bcrypt.hashSync(req.body.password, salt);
 newUser.password = hash;
 
 newUser.save().then(user=>{
-    res.render("home/index");
+    res.redirect("/");
 }).catch(err=>{
     console.log(err);
 })
@@ -34,7 +34,7 @@ router.get('/auth/signin', (req, res) => {
 router.post(
     "/auth/signin",
     passport.authenticate("local", {
-      successRedirect: "/",
+      successRedirect: "/home",
       failureRedirect: "/auth/signin"
     })
   );
