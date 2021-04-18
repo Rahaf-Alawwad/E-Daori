@@ -41,7 +41,7 @@
     
     <% let played= element.score.fulltime.home %>
     <script>if( played == null){console.log("button deactivated"); document.getElementById("voteBtn").setAttribute('disabled', true)}</script> 
-    <button id= "voteBtn" type="submit">Vote</button>
+    <a href="/vote" ><button id= "voteBtn" type="submit">Vote</button></a>
 
     <a href="/match/details/<%= element.fixture.id %>">Show Details</a>
     

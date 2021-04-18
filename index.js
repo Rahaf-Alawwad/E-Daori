@@ -49,6 +49,7 @@ app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'))
 app.use(require('./routes/profile'))
+app.use(require('./routes/admin'))
 app.use(require('./routes/match'))
 
 
