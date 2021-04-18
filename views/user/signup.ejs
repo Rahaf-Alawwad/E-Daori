@@ -2,20 +2,30 @@
     <link rel="stylesheet" href="css/auth.css">
    
 </head>
-<div class="form_conianer">
-    <form action="/auth/signup" method= "POST" class="form">
-        <h2> Create Your account</h2>
-    <input type="text" name="name" class="form__input__text" placeholder="Enter your name">
-    <input type="email" name="emailAddress" class="form__input__text" placeholder="Enter your email">
-    <input type="password" name ="password" class="form__input__text"  placeholder="Enter your password">
-    
-    <input id ="profileImage" name ="image" type="file" class="form__input__text" >
 
-    <input type="submit" value="Sing Up" class="form__input__submit">
-    </form>
-
-
-    <p>already have an account? </p> <br>
-    <a href="/auth/signin"> log in</a>
-    
+<div class="card">
+    <div class="content">
+        <div class="form_conianer">
+            <form action="/auth/signup" method= "POST" class="form">
+                <h3> Create Your account</h3>
+                <br>
+            <input type="text" name="name" class="form__input__text" placeholder="Enter your name">
+            <input type="email" name="emailAddress" class="form__input__text" placeholder="Enter your email">
+            <input type="password" name ="password" class="form__input__text"  placeholder="Enter your password">
+            <br>
+            
+            <input id ="profileImage" name ="image" type="file" class="form__input__text" >
+            <br>
+        
+            <input type="submit" value="Sing Up" class="form__input__submit">
+            </form>
+            <br>
+        
+        
+            <p>already have an account? </p> <br>
+            <a href="/auth/signin"> log in</a>
+            
+        </div>
+        
+    </div>
 </div>
