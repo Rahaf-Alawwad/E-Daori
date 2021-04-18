@@ -49,8 +49,11 @@ app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'))
 app.use(require('./routes/profile'))
+
 app.use(require('./routes/admin'))
 app.use(require('./routes/match'))
+
+
 
 
 
@@ -59,8 +62,7 @@ app.get('/' , (req ,res ) => {
 if (req.user) {
   res.redirect('/home')
 }else {
-  res.redirect('/auth/signup')
-    
+  res.redirect('/auth/signup')    
 }
 
 })
