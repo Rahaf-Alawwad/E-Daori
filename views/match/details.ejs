@@ -1,38 +1,58 @@
+<head>
+  <link rel="stylesheet" href="css/auth.css">
+
+  <script>function change(value){document.getElementById("vote").value= value;}</script>
+
+</head>
+
+  <div class="card" data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+    <div class="content">
+      <div class="Row-img"> 
+<% console.log(response.data)%>
+<% console.log("============")%>
+<% console.log(response.response[0].teams)%>
+
+        <img  src="<%= response.response[0].teams.home.logo %>" alt="Card image cap">
 
 
-<div class="card" style="width: 18rem;">
-    <div class="row">
-    
-        <div class="column">
-        <img class="card-img-top" src="" alt="Card image cap">
+
+        <img  src="<%= response.response[0].teams.away.logo %>" alt="Card image cap">
+        
+       
+
+      </div>
+      <div class="Row-name-under-img">
         <div class="card-body">
-          <h5 class="card-title"></h5>
+          <h2 class="card-title"><%= response.response[0].teams.home.name %> &nbsp    &nbsp <%= response.response[0].teams.away.name %></h2>
         </div>
-    
-    </div>
 
-    <div class="column">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
+
+      </div>
+      <p class="card-text"><%= response.response[0].score.fulltime.home %> &nbsp - &nbsp <%= response.response[0].score.fulltime.away %></p>
+          
+            <h4  >Time:<%= response.response[0].fixture.timestamp %>  </h4 >
+            <h4  >Time:<%= response.response[0].fixture.date %>  </h4 >
+            <h4  >Referee:<%= response.response[0].fixture.referee %>  </h4 >
+            <h4  ><%= response.response[0].fixture.venue.city %> <%= response.response[0].fixture.venue.name %></h4 >
+         
+            <div class="card-body">
+            <a href="#" class="card-link">Another link</a>
+            <% let played= response.response[0].score.fulltime.home %>
+       
+          </div>
+
+         
+        <div class="form_conianer">
+            <form action="/vote/<%= response.response[0].fixture.id %>" method="POST" class="form">
+                <h2> Vote</h2>
+            
+            <input type="text" id= "vote" name="vote" class="form__input__text"  hidden="hidden">
+            <input onclick="change('teamOne')"type="submit" value="<%= response.response[0].teams.home.name %>" class="form__input__submit">
+            <input onclick="change('tie')" type="submit" value="tie" class="form__input__submit">
+        
+            <input onclick="change('teamTwo')" type="submit" value="<%= response.response[0].teams.away.name %>" class="form__input__submit">
+            </form>
         </div>
     </div>
-   
 </div>
-<p class="card-text"></p>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Time:  </li>
-      <li class="list-group-item">Time:  </li>
-      <li class="list-group-item">Referee:  </li>
-      <li class="list-group-item"></li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Another link</a>
-    </div>
     
-  
-  
-    <button id= "voteBtn" type="submit">Vote</button>
-
-    
-  </div>

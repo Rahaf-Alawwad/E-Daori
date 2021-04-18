@@ -42,25 +42,10 @@ router.get("/admin/match", (req,res)=>{
 })
 
 
-router.get("/vote", (req,res)=>{
-    res.render("home/vote")
-})
-
-router.post("/vote", (req,res)=>{
-User.findById(req.user.id)
-.then(user=>{
-    Match.findOneAndUpdate({fixtureID:req.body.matchID}, { $push:{vote : [{user: user} , {vote:req.body.vote}] }})
-    .then(update=>{
-        res.send("Done")
-    })
-    .catch(err=>{
-        console.log(err);
-    })
-    
-}).catch(err=>{
-    console.log(err);
-})
-
-})
+// router.get("/vote", (req, res) => {
+//     res.render("home/vote")
+//   })
+  
+ 
 
 module.exports = router;
