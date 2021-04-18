@@ -14,15 +14,13 @@ const matchSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    vote:[{
+    votes:[{
         user:{
         type : mongoose.Schema.Types.ObjectId , 
         ref : 'User'
     },
     vote:String
-    }
-]
-    
+    }]
 
 },
 {
