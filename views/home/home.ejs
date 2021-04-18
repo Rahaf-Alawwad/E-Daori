@@ -9,7 +9,7 @@
     
 
 
-<div class="card" style="width: 18rem;">
+<div class="card"  style="width: 18rem;">
     <div class="row">
     
         <div class="column">
@@ -43,6 +43,7 @@
     <script>if( played == null){console.log("button deactivated"); document.getElementById("voteBtn").setAttribute('disabled', true)}</script> 
     <a href="/vote" ><button id= "voteBtn" type="submit">Vote</button></a>
 
+    <a href="/match/details/<%= element.fixture.id %>">Show Details</a>
     
   </div>
   <% }%>
