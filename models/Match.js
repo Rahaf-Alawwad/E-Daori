@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const matchSchema = mongoose.Schema({
+    fixtureID:Number,
     teamOne: {
         type: String,
         required: true,
@@ -14,9 +15,13 @@ const matchSchema = mongoose.Schema({
         required: true,
     },
     vote:[{
+        user:{
         type : mongoose.Schema.Types.ObjectId , 
         ref : 'User'
-    }]
+    },
+    vote:String
+    }
+]
     
 
 },
@@ -26,6 +31,6 @@ const matchSchema = mongoose.Schema({
 });
 
 
-
 const Match = mongoose.model("Match", matchSchema);
+
 module.exports = Match;
