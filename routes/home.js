@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
@@ -20,14 +21,14 @@ router.get('/test', (req,res)=>{
     });
   })
   
-  router.get('/fetch', (req,res)=>{
+  /* router.get('/fetch', (req,res)=>{
   
     const options = {
       method: 'GET',
       url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
       params: {league: '307', season: '2020'},
       headers: {
-        'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+        'x-rapidapi-key': process.env.APIKey,
         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
       }
     };
@@ -48,7 +49,7 @@ router.get('/test', (req,res)=>{
       url: 'https://api-football-v1.p.rapidapi.com/v3/odds',
       params: {league: '307', season: '2020'},
       headers: {
-        'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+        'x-rapidapi-key': process.env.APIKey,
         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
       }
     };
@@ -58,7 +59,7 @@ router.get('/test', (req,res)=>{
     }).catch(function (error) {
       console.error(error);
     });
-  })
+  }) */
 
 
 
