@@ -1,6 +1,4 @@
 <head>
-  <link rel="stylesheet" href="css/auth.css">
-
   <script>function change(value){document.getElementById("vote").value= value;}</script>
 
 </head>
@@ -8,9 +6,6 @@
   <div class="card" data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
     <div class="content">
       <div class="Row-img"> 
-<% console.log(response.data)%>
-<% console.log("============")%>
-<% console.log(response.response[0].teams)%>
 
         <img  src="<%= response.response[0].teams.home.logo %>" alt="Card image cap">
 
@@ -33,7 +28,7 @@
             <h4  >Time:<%= response.response[0].fixture.timestamp %>  </h4 >
             <h4  >Time:<%= response.response[0].fixture.date %>  </h4 >
             <h4  >Referee:<%= response.response[0].fixture.referee %>  </h4 >
-            <h4  ><%= response.response[0].fixture.venue.city %> <%= response.response[0].fixture.venue.name %></h4 >
+            <h4  ><%= response.response[0].fixture.venue.city %> &nbsp:&nbsp <%= response.response[0].fixture.venue.name %></h4 >
          
             <div class="card-body">
             <a href="#" class="card-link">Another link</a>
