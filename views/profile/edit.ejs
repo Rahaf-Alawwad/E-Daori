@@ -1,23 +1,41 @@
 <head>
     <link rel="stylesheet" href="css/auth.css">
+    
    
 </head>
-<div class="form_conianer">
-    <form action="/profile/edit" method= "POST" class="form">
-        <h2> Edit Your account</h2>
-    <input type="text" name="name" class="form__input__text" placeholder="Enter your name" value="<%= result.name %>">
-    <a href="/edit/Password"> Edit password</a>
-    <input id ="profileImage" name ="image" type="file" class="form__input__text" >
-    <% result.favoriteTeams.forEach(team => { %>
 
-        <form>
-            <h6> <%= team %> </h6> <h6>  </h6>
-            <input type="submit" value="Delete" class="form__input__submit">
+<div class="card-edit-profile">
+    <div class="content-edit-profile">
+
+        <form action="/profile/edit" method= "POST" class="form">
+            <h2> Edit Your account</h2>
+            <br>
+        <input type="text" name="name" class="form__input__text" placeholder="Enter your name" value="<%= result.name %>">
+        <br>
+
+        <a href="/edit/Password"> Edit password</a>
+        <br>
+
+        <input id ="profileImage" name ="image" type="file" class="form__input__text" >
+        <br>
+
+        <% result.favoriteTeams.forEach(team => { %>
+    
+            <form>
+                <h6> <%= team %> </h6> <h6>  </h6>
+                <input type="submit" value="Delete" class="form__input__submit">
+            </form>
+    
+            <% }) %>
+            <br>
+
+            <input type="submit" value="Save changes" class="form__input__submit">
+
         </form>
+    </div>
 
-        <% }) %>
-        <input type="submit" value="Save changes" class="form__input__submit">
-    </form>
+</div>
+   
 
  
 </div>
