@@ -20,7 +20,7 @@ let hash = bcrypt.hashSync(req.body.password, salt);
 newUser.password = hash;
 
 newUser.save().then(user=>{
-    res.redirect("/");
+    res.redirect("/test");
 }).catch(err=>{
     console.log(err);
 })

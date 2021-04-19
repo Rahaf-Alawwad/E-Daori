@@ -21,7 +21,7 @@ mongoose.connect(
 app.set("view engine", "ejs");
 app.use(expresslayouts);
 
-
+//app.use(express.static(DOCUMENT_ROOT));
 app.use(express.urlencoded({extended:false}))
 app.use(express.static("public"));
 
@@ -51,7 +51,11 @@ app.use(require('./routes/home'))
 app.use(require('./routes/profile'))
 app.use(require('./routes/match'))
 app.use(require('./routes/admin'))
+
 app.use(require('./routes/team'))
+
+app.use(require('./routes/quiz'))
+
 
 
 
