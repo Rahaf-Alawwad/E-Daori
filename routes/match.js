@@ -36,6 +36,8 @@ router.get('/match/details/:id', (req, res) => {
 router.get('/test/match/details/:id', (req, res) => {
 
 let flag = true;
+let arr;
+let teamOne=0,teamTwo=0,tie=0;
 
   const options = {
     method: 'GET',
@@ -53,14 +55,32 @@ let flag = true;
         console.log(elem.match+" === "+match.id);
         if(flag && elem.match == match.id){
           flag = false;
+
+          match.votes.forEach(eleme =>{ //localeCompare
+            if(eleme.vote === "tie"){
+            tie++
+            }
+            else if(eleme.vote === "teamOne"){
+              teamOne++
+            }
+            else{
+              teamTwo++
+            }
+          })
+
+           arr=[
+            (Math.round(((teamOne/match.votes.length)*100))+"%"),
+            (Math.round(((teamTwo/match.votes.length)*100))+"%"),
+            (Math.round(((tie/match.votes.length)*100))+"%")
+          ]
           
-          res.render("match/detailsAfterVote", { response: response.data });
+          res.render("match/detailsAfterVote", { response: response.data, votedCount: arr});
           
         }
   
         })
         if (flag){
-          res.render("match/details", { response: response.data });
+          res.render("match/details", { response: response.data});
         }
       }).catch(err =>{
         console.log(err)
@@ -107,7 +127,7 @@ router.post("/vote/:matchID", (req, res) => {
   router.get("/vote/:matchID", (req, res) => {
    
    
-    Match.findOneAndUpdate({ fixtureID: req.params.matchID })
+    Match.findOne({ fixtureID: req.params.id })
     .then(match => {
       let teamOne=0,teamTwo=0,tie=0;
 
