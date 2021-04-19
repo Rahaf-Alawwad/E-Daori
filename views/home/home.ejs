@@ -21,11 +21,11 @@
 
       </div>
       <div class="Row-name-under-img">
-        <div class="card-body">
-          <h2 class="card-title"><%= element.teams.home.name %> &nbsp    &nbsp <%= element.teams.away.name %></h2>
+        <div class="card-body"> 
+          <div class="card-title"> <a href="/team/details/?id=<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
         </div>
 
-
+  
       </div>
       <p class="card-text"><%= element.score.fulltime.home %> &nbsp - &nbsp <%= element.score.fulltime.away %></p>
           
@@ -37,8 +37,9 @@
             <div class="card-body">
             <a href="#" class="card-link">Another link</a>
             <% let played= element.score.fulltime.home %>
-          <script>if( played == null){console.log("button deactivated"); document.getElementById("voteBtn").setAttribute('disabled', true)}</script> 
-          <a id= "voteBtn" type="submit">Vote</a>
+          <script>//if( played == null){ document.getElementById("voteBtn").setAttribute('hidden', hidden)}</script> 
+
+          <a href ="/vote" id= "voteBtn" type="submit">Vote</a>
           </div>
           
           

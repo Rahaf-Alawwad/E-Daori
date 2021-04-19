@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema({
     },
     favoriteTeams:[{type: String}]
     ,
+
     voteMatchs:[{
         match:{
         type : mongoose.Schema.Types.ObjectId , 

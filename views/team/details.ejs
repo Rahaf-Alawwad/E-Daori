@@ -1,0 +1,33 @@
+<div class="card" style="width: 18rem;">
+    <div class="row">
+
+        <div class="column">
+            <img class="card-img-top" src="<%= response.response.response[0].team.logo %>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= response.response.response[0].team.name %>
+                </h5>
+            </div>
+
+        </div>
+
+
+    </div>
+    <p class="card-text"></p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">players: </li>
+        <li class="list-group-item">founded: <%response.response.response[0].team.founded %>
+        </li>
+        <li class="list-group-item">Referee: </li>
+        <li class="list-group-item"></li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">Another link</a>
+    </div>
+
+
+    <form method="POST" action="/team/favorite/?id=<%= response.response.response[0].team.name %>">
+        <input id="favBtn" type="submit">favorite</input>
+    </form>
+
+</div>

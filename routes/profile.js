@@ -2,8 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 const User = require("../models/User");
+const Match = require("../models/Match");
 const bcrypt = require("bcrypt");
 const salt = 10;
+
+var methodOverride = require('method-override');
+router.use(methodOverride('_method'))
+
 
 router.get("/profile", (req, res) => {
 
@@ -48,7 +53,7 @@ router.post("/edit/Password", (req, res) => {
 
 
             let hash = bcrypt.hashSync(req.body.password_new, salt);
-           
+
             console.log(hash);
 
 
@@ -72,7 +77,17 @@ router.post("/edit/Password", (req, res) => {
 })
 
 
-
+router.delete("/profile/edit/delete", (req, res) => {
+    User.findById(req.user)
+        .then(() => {
+            Match.findByIdAndUpdate(req.query.id,
+                { $pull: { votes :{ user: req.user }}}) 
+                res.redirect("/profile/edit")
+        })
+        .catch (err => {
+        console.log(err)
+})
+})
 
 
 module.exports = router;
