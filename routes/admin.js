@@ -42,10 +42,12 @@ router.get("/admin/match", (req,res)=>{
 })
 
 
+
 // router.get("/vote", (req, res) => {
 //     res.render("home/vote")
 //   })
   
  
+
 
 module.exports = router;
