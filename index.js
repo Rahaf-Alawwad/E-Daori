@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+// var vanilla =require('vanilla-tilt');
 
 
 mongoose.connect(
@@ -20,6 +21,7 @@ mongoose.connect(
   );
 app.set("view engine", "ejs");
 app.use(expresslayouts);
+// app.use(vanilla);
 
 //app.use(express.static(DOCUMENT_ROOT));
 app.use(express.urlencoded({extended:false}))

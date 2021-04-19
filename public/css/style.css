@@ -58,6 +58,8 @@ body::after{
     border-left:1px solid rgba(255, 255, 255, 0.5) ;
     /* backdrop-filter: blur(5px); */
 }
+
+
 .container .card .content{
     padding: 20px;
     text-align: center;
@@ -66,6 +68,7 @@ body::after{
     transition: 0.5s;
 
 }
+
 .container .card:hover .content{
 
     transform: translateY(0px);
