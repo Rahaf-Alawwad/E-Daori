@@ -43,7 +43,7 @@ router.post(
 router.get("/auth/logout", (req, res) => {
     req.logout();
     // req.flash("error", "You are logged out successfully.");
-    res.redirect("/");
+    res.redirect("/auth/signin");
   });
 
 
