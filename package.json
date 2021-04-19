@@ -18,8 +18,7 @@
     "mongoose": "^5.12.3",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "vanilla-tilt": "^1.7.0"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
