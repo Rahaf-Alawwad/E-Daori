@@ -3,11 +3,55 @@
         color: white
     }
 </style>
+<<<<<<< HEAD
 <% let array=quizzes %>
 <% let counter = 0 %>
 <% console.log("i am here")%>
 
     <script>
+=======
+<%  let counter = 0   %>
+   <% randomQuestion() %>
+
+<% function randomQuestion() { %>
+    <% let random1 = Math.floor(Math.random() * 10);%>
+
+
+    <h1><%=quizzes[random1].question %></h1>
+    <br>
+    
+    <button  onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].choose1 %>' )"><%=quizzes[random1].choose1 %></button>
+    <br>
+    
+    <button onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].choose2 %>')"><%=quizzes[random1].choose2 %></button>
+    <br>
+    
+    <button onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].correct %>')"><%=quizzes[random1].correct %></button>
+<% }%>
+
+<script>
+    
+    let counter = 0;
+    function myFunction(bestAnswer ,current ) {
+    //   alert("in myFunction"+bestAnswer+current);
+      if (bestAnswer  === current) {
+        console.log(counter);
+        console.log('===============');
+       
+          
+           if (counter < 10) { 
+               console.log(counter)  
+                counter ++ 
+                randomQuestion() 
+           } else { 
+            console.log("correct");  
+        } 
+       }
+       else{ 
+           console.log("error");
+            }
+    }
+>>>>>>> ac48c305875f7fd5e69fc8eb35dedce96e0add26
     </script>
         <% randomQuestion() %>
         

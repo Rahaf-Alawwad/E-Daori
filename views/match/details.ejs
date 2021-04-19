@@ -38,8 +38,11 @@
 
          
         <div class="form_conianer">
-            <form action="/vote/<%= response.response[0].fixture.id %>" method="POST" class="form">
-                <h2> Vote</h2>
+            
+        
+            <form  id ="voteChoice" action="/vote/<%= response.response[0].fixture.id %>" method="POST" class="form">
+           
+              <h2> Vote</h2>
             
             <input type="text" id= "vote" name="vote" class="form__input__text"  hidden="hidden">
             <input onclick="change('teamOne')"type="submit" value="<%= response.response[0].teams.home.name %>" class="form__input__submit">
@@ -51,3 +54,6 @@
     </div>
 </div>
     
+
+
+<script src="../routes/match.js"></script>
