@@ -1,58 +1,70 @@
 <style>
-    h1{
+    h1 {
         color: white
     }
 </style>
-<%  let counter = 0   %>
-   <% randomQuestion() %>
+<% let array=quizzes %>
+<% let counter = 0 %>
+<% console.log("i am here")%>
 
-<% function randomQuestion() { %>
-    <% let random1 = Math.floor(Math.random() * 10);%>
-
-
-    <h1><%=quizzes[random1].question %></h1>
-    <br>
-    
-    <button  onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].choose1 %>' )"><%=quizzes[random1].choose1 %></button>
-    <br>
-    
-    <button onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].choose2 %>')"><%=quizzes[random1].choose2 %></button>
-    <br>
-    
-    <button onclick="myFunction('<%=quizzes[random1].correct %>','<%=quizzes[random1].correct %>')"><%=quizzes[random1].correct %></button>
-<% }%>
-
-<script>
-    let counter = 0;
-    function myFunction(bestAnswer ,current ) {
-    //   alert("in myFunction"+bestAnswer+current);
-      if (bestAnswer  === current) {
-        console.log(counter);
-        console.log('===============');
-       
-          
-           if (counter < 10) { 
-               console.log(counter)  
-                counter ++ 
-                randomQuestion() 
-           } else { 
-            console.log("correct");  
-        } 
-       }
-       else{ 
-           console.log("error");
-            }
-    }
+    <script>
     </script>
+        <% randomQuestion() %>
+        
+        <% function randomQuestion() { 
+             console.log("counter"+counter)
+                let random1 = Math.floor(Math.random() * array.length) %>
+                <h1>
+                    <%=array[random1].question %>
+                </h1>
+                <br>
+
+                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].choose1 %>' )">
+                    <%=quizzes[random1].choose1 %>
+                </button>
+                <br>
+
+                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].choose2 %>')">
+                    <%=quizzes[random1].choose2 %>
+                </button>
+                <br>
+
+                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].correct %>')">
+                    <%=quizzes[random1].correct %>
+                </button>
+                <button onclick="myFunction('hussain','hussain')">تست</button>
 
 
-<script>
-    function check(answer) {
-      alert("Iam in check answer"+ answer);
-   }
-   
-   </script>
-   
-   
-   
-   
+                <% }%>
+              
+                        <script>
+                            let array = quizzes;
+                          
+                            function next() {
+                                let random = Math.floor(Math.random() * array.length)
+
+                            }
+                          
+                            function myFunction(bestAnswer, current) {
+                                alert("in myFunction " + bestAnswer + current);
+                              
+                                if (bestAnswer === current) {
+                                    alert(true);
+                                    alert(counter);
+                                    counter=counter+1
+
+
+                                    randomQuestion()
+                                }
+                                if (counter < 10) {
+                                    array.splice(array.indexOf(array[rand]), 1)
+                                    alert("less then 10 "+true);
+
+                                    randomQuestion()
+                                } else {
+                                   alert("correct");
+                                }
+                            }
+                        </script>
+
+

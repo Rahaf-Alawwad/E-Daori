@@ -51,11 +51,8 @@ app.use(require('./routes/home'))
 app.use(require('./routes/profile'))
 
 app.use(require('./routes/admin'))
-<<<<<<< HEAD
-app.use(require('./routes/match'))
-=======
 app.use(require('./routes/quiz'))
->>>>>>> 39ce1bebc131aa6a722dfb633aa07b1d984a23f4
+app.use(require('./routes/match'))
 
 
 
