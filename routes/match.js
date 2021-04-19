@@ -27,21 +27,49 @@ router.get('/match/details/:id', (req, res) => {
    res.render("match/details" , {match : response.data});
   }).catch(error=> {
     console.error(error);
-  }); */
+  });*/
 
-  res.redirect("/test/match/details/")
+  res.redirect("/test/match/details/"+req.params.id)
 });
 
 // only for test
-router.get('/test/match/details/', (req, res) => {
+router.get('/test/match/details/:id', (req, res) => {
+
+let flag = true;
+
   const options = {
     method: 'GET',
     url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
   };
 
   axios.request(options).then(function (response) {
-    console.log(response.data);
-    res.render("match/details", { response: response.data });
+    console.log("match id"+ req.params.id);
+    console.log("user id"+ req.user.id);
+  
+    User.findById(req.user.id).then(user=>{
+      Match.findOne({fixtureID:req.params.id}).then(match=>{
+        console.log(match);
+        user.voteMatchs.forEach(elem=>{
+        console.log(elem.match+" === "+match.id);
+        if(flag && elem.match == match.id){
+          flag = false;
+          
+          res.render("match/detailsAfterVote", { response: response.data });
+          
+        }
+  
+        })
+        if (flag){
+          res.render("match/details", { response: response.data });
+        }
+      }).catch(err =>{
+        console.log(err)
+      })
+    })
+  .catch(err =>{
+    console.log(err)
+  })
+   
   }).catch(function (error) {
     console.error(error);
   });
@@ -51,21 +79,15 @@ router.post("/vote/:matchID", (req, res) => {
 
   User.findById(req.user.id)
     .then(user => {
-      console.log("=====================================");
-      console.log(user);
-      console.log("=====================================");
 
       Match.findOneAndUpdate({ fixtureID: req.params.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
         .then(update => {
-          console.log("=======--------------------=========");
-
-          console.log(update);
-          console.log("=======--------------------=========");
+         
 
           User.findByIdAndUpdate(req.user.id, { $push: { voteMatchs: [{ match: update, vote: req.body.vote }] } })
           .then(result => {
             console.log(result);
-            res.redirect("/test/match/details/");
+            res.redirect("/vote/"+req.params.matchID);
           })
             .catch(err => {
               console.log(err);
@@ -81,7 +103,45 @@ router.post("/vote/:matchID", (req, res) => {
     })
   
   })
+
+  router.get("/vote/:matchID", (req, res) => {
+   
+   
+    Match.findOneAndUpdate({ fixtureID: req.params.matchID })
+    .then(match => {
+      let teamOne=0,teamTwo=0,tie=0;
+
+      console.log(match.votes)
+      match.votes.forEach(eleme =>{ //localeCompare
+        if(eleme.vote === "tie"){
+        tie++
+        }
+        else if(eleme.vote === "teamOne"){
+          teamOne++
+        }
+        else{
+          teamTwo++
+        }
+      })
+      console.log(`teamOne: ${Math.round(((teamOne/match.votes.length)*100))}% ! teamTwo: ${Math.round(((teamTwo/match.votes.length)*100))}% ! tie: ${Math.round(((tie/match.votes.length)*100))}%`);
   
+
+      let arr=[
+        Math.round(((teamOne/match.votes.length)*100)),
+        Math.round(((teamTwo/match.votes.length)*100)),
+        Math.round(((tie/match.votes.length)*100))
+      ]
+      res.redirect('/test/match/details/'+arr) 
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+
+
+
+
+  })
   
 
 
