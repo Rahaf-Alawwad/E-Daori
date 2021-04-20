@@ -8,11 +8,11 @@ const router = express.Router();
 const axios = require("axios");
 
 
-function getDate(currentDate,addDays){
+function getDate(currentDate, addDays) {
   let year = currentDate.getFullYear()
-  let month = parseInt(currentDate.getMonth())+ 1 < 10? "0"+(parseInt(currentDate.getMonth())+ 1):parseInt(currentDate.getMonth())+ 1
-  let day = parseInt(currentDate.getDate())+ addDays < 10? "0"+(parseInt(currentDate.getDate())+ addDays):parseInt(currentDate.getDate())+ addDays
-  return (year+ "-" +month+ "-" + day)
+  let month = parseInt(currentDate.getMonth()) + 1 < 10 ? "0" + (parseInt(currentDate.getMonth()) + 1) : parseInt(currentDate.getMonth()) + 1
+  let day = parseInt(currentDate.getDate()) + addDays < 10 ? "0" + (parseInt(currentDate.getDate()) + addDays) : parseInt(currentDate.getDate()) + addDays
+  return (year + "-" + month + "-" + day)
 }
 
 router.get("/home/current", (req, res) => {
@@ -33,7 +33,7 @@ router.get("/home/current", (req, res) => {
   };
 
   axios.request(options).then(function (response) {
-   
+
     res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
@@ -43,10 +43,10 @@ router.get("/home/current", (req, res) => {
 
 
 
-router.get("/home/last", (req,res)=>{
+router.get("/home/last", (req, res) => {
   var currentDate = new Date();
-  let  toDate =  getDate(currentDate,-1);
-  let fromDate=  getDate(currentDate,-8)
+  let toDate = getDate(currentDate, -1);
+  let fromDate = getDate(currentDate, -8)
 
   // const options = {
   //   method: 'GET',
@@ -64,16 +64,16 @@ router.get("/home/last", (req,res)=>{
   };
 
   axios.request(options).then(function (response) {
-   
+
     res.render("home/homeLast", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
 })
-router.get("/home/next", (req,res)=>{
+router.get("/home/next", (req, res) => {
   var currentDate = new Date();
-  let fromDate =  getDate(currentDate,1);
-  let toDate =  getDate(currentDate,8)
+  let fromDate = getDate(currentDate, 1);
+  let toDate = getDate(currentDate, 8)
 
   // const options = {
   //   method: 'GET',
@@ -90,7 +90,7 @@ router.get("/home/next", (req,res)=>{
 
   };
 
- 
+
   axios.request(options).then(function (response) {
     res.render("home/homeNext", { response: response.data });
   }).catch(function (error) {
@@ -99,21 +99,21 @@ router.get("/home/next", (req,res)=>{
 })
 
 router.get('/home/previous', (req, res) => {
-const options = {
-  method: 'GET',
-  url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-  params: {league: '307', season: '2020', status: 'FT'},
-  headers: {
-    'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
-    'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-  }
-};
+  const options = {
+    method: 'GET',
+    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+    params: { league: '307', season: '2020', status: 'FT' },
+    headers: {
+      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    }
+  };
 
-axios.request(options).then(function (response) {
-  res.render("home/homePrevious", { response: response.data });
-}).catch(function (error) {
-	console.error(error);
-});
+  axios.request(options).then(function (response) {
+    res.render("home/homePrevious", { response: response.data });
+  }).catch(function (error) {
+    console.error(error);
+  });
 })
 
 
@@ -121,22 +121,22 @@ router.get('/home/upcoming', (req, res) => {
   const options = {
     method: 'GET',
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {league: '307', season: '2020', status: 'NS'},
+    params: { league: '307', season: '2020', status: 'NS' },
     headers: {
       'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
-  
+
   axios.request(options).then(function (response) {
     res.render("home/homePrevious", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
-  })
+})
 
 
-  
+
 router.get('/test', (req, res) => {
 
   const options = {
@@ -270,7 +270,7 @@ router.get('/favoriteteams', (req, res) => {
 
         })
       });
-      res.render("home/favoriteTeam",{response :favTeam})
+      res.render("home/favoriteTeam", { response: favTeam })
     }).catch(err => console.log(err))
 
 
