@@ -7,7 +7,7 @@ const User = require('../models/User');
 
 
 
-router.get("/team/details/:teamID", (req,res)=>{
+/* router.get("/team/details/:teamID", (req,res)=>{
 
     const options = {
         method: 'GET',
@@ -21,32 +21,49 @@ router.get("/team/details/:teamID", (req,res)=>{
       
       axios.request(options).then(function (response) {
 
-        res.render("team/details" , {team : response.data});
+        res.render("team/details" , {response : response.data});
       }).catch(function (error) {
           console.error(error);
-      });
-})
+      }); 
+      res.redirect('/team/details')
+}) */
 
-router.get("/team/details/", (req,res)=>{
+router.get("/team/details/:matchID", (req,res)=>{
+
+  let flag = true;
+         
 
     const options = {
         method: 'GET',
         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
 
         axios.request(options).then(function (response) {
-            
-            res.render("team/details" , {response : response.data});
 
-        })
-
+          User.findById(req.user.id).then(result=>{
+            result.favoriteTeams.forEach(element => {
+              if(flag && element===req.params.matchID){
+                flag=false;
+          res.render('team/favodetails', {response : response.data})   
+         /*res.json({response : response.data})  */
+        }
+        });
+        if(flag){
+            res.render('team/details', {response : response.data})  
+        }
+        
+          }).catch(err => console.log(err))
+                })
+        
+ 
 })
 
 
 router.post("/team/favorite/:id", (req,res)=>{
-
-    User.findOneAndUpdate(req.user , { $push: { favoriteTeams: req.params.id}})
+console.log(req.params.id)
+User.findOneAndUpdate(req.user.id , { $push: { favoriteTeams: req.params.id}})
     .then(user => {
-        res.send("Done");
+      res.redirect("/team/details/"+req.params.id)
+      /* res.render('team/favoDetails', {response : response.data}) */
     })
     .catch(err => {
         console.log(err);

@@ -28,15 +28,6 @@ router.get('/match/details/:id', (req, res) => {
     res.render("match/details" , {response : response.data}); 
   }).catch(error=> {
     console.error(error);
-<<<<<<< HEAD
-  }); 
-  */
-   res.redirect("/test/match/details/") 
-});
-
-// only for test
- router.get('/test/match/details/', (req, res) => {
-=======
   });*/
 
   res.redirect("/test/match/details/"+req.params.id)
@@ -49,7 +40,6 @@ let flag = true;
 let arr;
 let teamOne=0,teamTwo=0,tie=0;
 
->>>>>>> ac48c305875f7fd5e69fc8eb35dedce96e0add26
   const options = {
     method: 'GET',
     url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
