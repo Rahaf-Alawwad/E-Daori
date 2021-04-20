@@ -41,7 +41,7 @@ const User = require('../models/User');
 /*
 router.get("/team/details/:matchID", (req,res)=>{
 
-  let flag = true;
+ // let flag = true;
          
 //         res.render("team/details" , {team : response.data});
 //       }).catch(function (error) {
@@ -63,7 +63,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 //         })
 //         .catch(function (error) {
 //                    console.error(error);
-//                 });
+       //          });
 
 })
 */
