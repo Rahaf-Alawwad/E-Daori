@@ -11,11 +11,7 @@ for(let i=0; i<10;i++){quizzQuestions.push(i)}
 shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
 quizzQuestions =[...shuffledQuestions]
 
-router.get("/quiz", (req,res)=>{
-    
 
-     res.redirect("/quiz/index");
-})
 router.get("/quiz/index", (req, res) => {
 
     currentQuestion = shuffledQuestions.pop()
@@ -30,7 +26,7 @@ router.get("/quiz/index", (req, res) => {
 
 router.post("/quiz/index", (req, res) => {
 
-    if( req.body.choice == quizzes[quizzQuestions[shuffledQuestions.length]].correct){
+    if( req.body.choice == quizzes[quizzQuestions[shuffledQuestions.length]].correct &&shuffledQuestions.length >0){
         score++
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
