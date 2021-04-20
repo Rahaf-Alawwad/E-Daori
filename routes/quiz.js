@@ -8,6 +8,7 @@ let quizzes = require("../public/quiz.json")
 let quizzQuestions = []
 for(let i=0; i<10;i++){quizzQuestions.push(i)}
 shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
+quizzQuestions =[...shuffledQuestions]
 
 router.get("/quiz", (req,res)=>{
     
@@ -27,10 +28,8 @@ router.get("/quiz/index", (req, res) => {
 })
 
 router.post("/quiz/index", (req, res) => {
-    console.log(shuffledQuestions)
-    console.log(req.body.choice )
-    console.log(quizzes[shuffledQuestions[shuffledQuestions.length-2]].correct)
-    if( req.body.choice == quizzes[shuffledQuestions[shuffledQuestions.length-2]].correct ){
+
+    if( req.body.choice == quizzes[quizzQuestions[shuffledQuestions.length]].correct){
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
     choices = [quizzes[currentQuestion].choose1, quizzes[currentQuestion].choose2, quizzes[currentQuestion].correct]
