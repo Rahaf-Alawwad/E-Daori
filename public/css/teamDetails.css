@@ -1,8 +1,8 @@
 
 .container .card-team-details{
     position: relative;
-    width: 330px;
-    height: 480px;
+    width: 830px;
+    height: 800px;
     margin: 30px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -26,7 +26,7 @@
 
 }
 
-.container .card-team-details:hover .content-team-details{
+.container .card-team-details .content-team-details{
 
     transform: translateY(0px);
     opacity: 1;
