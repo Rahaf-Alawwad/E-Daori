@@ -1,0 +1,41 @@
+
+
+<a href="/admin/index">index</a>
+<a href="/admin/add">add</a>
+<a href="/admin/edit">edit</a>
+     <table class="table table-striped">
+        <tr>
+            <th>question</th>
+            <th>choose1</th>
+            <th>choose2</th>
+            <th>correct</th>
+          </tr>
+          
+<% question.forEach(element => { %>
+<tr>
+<td><%= element.question %></td>
+<td><%= element.choose1 %></td>
+<td><%= element.choose2 %></td>
+<td><%= element.correct %></td>
+
+
+<td><button onclick=" location.href = '/admin/edit?id=<%= element.id %>' ">Edit </butto></td>
+<!-- detele btn -->
+<td><form action="/admin/delete?id=<%= element.id %>" method="POST">
+  
+    <input type="submit" value="Delete" class="form__input__submit">
+    </form> </td>
+
+</tr>
+<% }) %>
+    </table>
+
+
+
+
+
+
+
+
+
+

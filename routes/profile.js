@@ -8,6 +8,41 @@ const salt = 10;
 const multer = require('multer');
 // const ejs = require('ejs');
 const path = require('path');
+const fs = require('fs');
+
+
+
+
+
+const storage = multer.diskStorage({
+    destination: './public/images/user/',
+    filename: function(req, file, cb){
+      cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+  });
+  const upload = multer({
+    storage: storage,
+    limits:{fileSize: 1000000},
+    fileFilter: function(req, file, cb){
+      checkFileType(file, cb);
+    }
+  })
+  
+  // Check File Type
+  function checkFileType(file, cb){
+    // Allowed ext
+    const filetypes = /jpeg|jpg|png|gif/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb('Error: Images Only!');
+    }
+  }
 
 
 var methodOverride = require('method-override');
@@ -34,10 +69,23 @@ router.get("/profile/edit", (req, res) => {
 })
 
 
-router.post("/profile/edit", (req, res) => {
+router.post("/profile/edit", upload.single("image"),(req, res) => {
+let userupdate= new User(req.body)
+console.log(req.body);
+console.log(req.file);
+userupdate.image= "images/user/"+req.file.filename;
 
-    User.findByIdAndUpdate(req.user.id, req.body).then(() => {
-        res.redirect('/profile');
+    User.findByIdAndUpdate(req.user.id, req.body).then(result => {
+        result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
+            //result.image= "images/user/"+req.file.filename;
+            res.redirect('/profile');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+       
+       
+        
     }).catch(err => {
         console.log(err);
     });
@@ -92,6 +140,15 @@ router.delete("/profile/edit/delete", (req, res) => {
         console.log(err)
 })
 })
+
+router.get("/profile/delete", (req,res)=>{
+    User.findByIdAndDelete(req.user.id)
+        .then(() => {
+                res.redirect("/auth/signup")
+        })
+        .catch(err => {console.log(err)})
+
+        })
 
 
 module.exports = router;

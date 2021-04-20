@@ -1,13 +1,14 @@
 
-
 <div class="card-profile">
     <div class="content-profile">
-        <%= result.image %>
-        <h1>name: <%= result.name %></h1>
-        <h1>email: <%= result.emailAddress %></h1>
+        <img src="<%=result.image %>" alt="">
+
+        <h1>name: <%=result.name %></h1>
+        <h1>email: <%=result.emailAddress %></h1>
          <%= result.favoriteTeams %>
         
         
         <a href="/profile/edit"> Edit profile</a>
+        <a href="/profile/delete"> Deactivate account </a>
     </div>
 </div>
