@@ -41,7 +41,7 @@ const User = require('../models/User');
 
 router.get("/team/details/:matchID", (req,res)=>{
 
-  let flag = true;
+ // let flag = true;
          
 //         res.render("team/details" , {team : response.data});
 //       }).catch(function (error) {
@@ -55,7 +55,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 //         method: 'GET',
 //         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
 
-        axios.request(options).then(function (response) {
+  //      axios.request(options).then(function (response) {
 //         axios.request(options).then(function (response) {
             
 //             res.render("team/details" , {response : response.data});
@@ -63,9 +63,9 @@ router.get("/team/details/:matchID", (req,res)=>{
 //         })
 //         .catch(function (error) {
 //                    console.error(error);
-//                 });
+       //          });
 
-// })
+})
 
 router.get("/team/details/", (req,res)=>{
 
@@ -113,7 +113,7 @@ router.get("/team/details/", (req,res)=>{
                 })
         
  
-})
+             
 
 
 router.post("/team/favorite/:id", (req,res)=>{

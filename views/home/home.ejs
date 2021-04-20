@@ -6,9 +6,10 @@
   <% for (let index = response.length-1; index >= 0; index--) {%> 
 
     <% const element = response[index];%> 
-
+   
 
   <div class="card"  onclick=" location.href = '/match/details/<%= element.fixture.id %>' " data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+   
     <div class="content">
       <div class="Row-img"> 
 
@@ -23,7 +24,7 @@
       </div>
       <div class="Row-name-under-img">
         <div class="card-body"> 
-          <div class="card-title"> <a href="/team/details/<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
+          <div class="card-title"> <a href="/team/details/?id=<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
         </div>
 
   
