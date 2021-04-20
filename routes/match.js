@@ -10,7 +10,7 @@ const Match = require("../models/Match");
 
 // HTTP GET - display details a specific match by id
 // for prodaction
-router.get('/match/details/:id', (req, res) => {
+router.get('/match/details', (req, res) => {
   /*
   const options = {
     method: 'GET',
@@ -30,11 +30,11 @@ router.get('/match/details/:id', (req, res) => {
     console.error(error);
   });*/
 
-  res.redirect("/test/match/details/"+req.params.id)
+  res.redirect("/test/match/details")
 });
 
 // only for test
-router.get('/test/match/details/:id', (req, res) => {
+router.get('/testing/match/details', (req, res) => {
 
 let flag = true;
 let arr;
@@ -46,11 +46,11 @@ let teamOne=0,teamTwo=0,tie=0;
   };
 
   axios.request(options).then(function (response) {
-    console.log("match id"+ req.params.id);
+    console.log("match id"+ req.query.id);
     console.log("user id"+ req.user.id);
   
     User.findById(req.user.id).then(user=>{
-      Match.findOne({fixtureID:req.params.id}).then(match=>{
+      Match.findOne({fixtureID:req.query.id}).then(match=>{
         console.log(match);
         user.voteMatchs.forEach(elem=>{
         console.log(elem.match+" === "+match.id);
