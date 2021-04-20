@@ -11,7 +11,8 @@ const Match = require("../models/Match");
 // HTTP GET - display details a specific match by id
 // for prodaction
 router.get('/match/details/:id', (req, res) => {
-  /* const options = {
+  /*
+  const options = {
     method: 'GET',
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {id: req.params.id},
@@ -23,8 +24,8 @@ router.get('/match/details/:id', (req, res) => {
   
   axios.request(options).then(response => {
     console.log(response.data);
-   // res.render("match/details" , {match : response.data});
-   res.render("match/details" , {match : response.data});
+   //res.json({response : response.data});
+    res.render("match/details" , {response : response.data}); 
   }).catch(error=> {
     console.error(error);
   });*/
@@ -93,7 +94,7 @@ let teamOne=0,teamTwo=0,tie=0;
   }).catch(function (error) {
     console.error(error);
   });
-})
+}) 
 
 router.post("/vote/:matchID", (req, res) => {
 
