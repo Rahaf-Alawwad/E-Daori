@@ -1,12 +1,11 @@
+<h1>Favorite Team</h1> 
 
 <!-- begin -->
-<br/>
-<h1>Today</h1>
-<br/>
+
   <% for (let index = response.length-1; index >= 0; index--) {%> 
 
     <% const element = response[index];%> 
-   
+
 
   <div class="card"  onclick=" location.href = '/testing/match/details?id=<%= element.fixture.id %>' " data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
  
@@ -24,11 +23,7 @@
       </div>
       <div class="Row-name-under-img">
         <div class="card-body"> 
-<<<<<<< HEAD
-          <div class="card-title"> <a href="/team/details/?id=<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
-=======
           <div class="card-title"> <a href="/team/details?matchID=<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
->>>>>>> 39fe94172b03dfe402dad306e9e6c4ed836e0a2b
         </div>
 
   
@@ -42,26 +37,11 @@
          
             <div class="card-body">
             <a href="#" class="card-link">Another link</a>
-
-
-          
           </div>
-          
-          
-      
+            
     </div>
-    
- 
         </div>
-    
-
-
-    
-   
-
   <% }%>
 
-  <br/>
-  <button>Next Week</button><h1>This Week</h1> <button>previous Week</button>
-  <br/>
+
   <!-- end -->
