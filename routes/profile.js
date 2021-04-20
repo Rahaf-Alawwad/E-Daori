@@ -5,6 +5,10 @@ const User = require("../models/User");
 const Match = require("../models/Match");
 const bcrypt = require("bcrypt");
 const salt = 10;
+const multer = require('multer');
+// const ejs = require('ejs');
+const path = require('path');
+
 
 var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
