@@ -8,6 +8,89 @@ const router = express.Router();
 const axios = require("axios");
 
 
+
+
+router.get("/home/testing", (req,res)=>{
+  d =req.query.current
+  //new Date(<your-date-object>.toDateString());
+  let currrentDate= new Date("2020-10-17T18:15:00+00:00").getTime();
+  //let currrentDate= d//new Date(d)
+  console.log("d Date: "+d)
+  console.log("cur Date: "+currrentDate)
+  const options = {
+    method: 'GET',
+    url: 'http://www.json-generator.com/api/json/get/cenUDEiMmW?indent=2',
+
+  };
+
+  axios.request(options).then(function (response) {
+   
+    let flag=true;
+    let first= true;
+    let currentWeekStored = true;
+   
+    let counter=0;
+    let days=0
+    let todayMatches = []; 
+    let currentWeek = [];
+     while(flag){
+     responseDate = new Date(response.data.response[counter].fixture.date).getTime();
+     if(responseDate > currrentDate){
+       flag = false
+     }
+     else{
+       if ((Math.ceil((currrentDate - responseDate) / (1000 * 60 * 60 * 24))) <= 1){
+          todayMatches.push(response.data.response[counter])
+         
+       }
+       counter ++
+     }
+    }
+    // while(flag){
+    //   responseDate = new Date(response.data.response[counter].fixture.date)
+      
+    //     while((Math.ceil((currrentDate - responseDate.getTime()) / (1000 * 60 * 60 * 24))) <= 7){
+    //       console.log(counter)
+    //      if (first){
+    //       days = responseDate.getDay()
+    //       first = false
+    //      }
+    //       responseDate.getDay()
+    //       if ( responseDate.getDay()%days!=0){
+    //       currentWeek.push(response.data.response[counter])
+    //       if(currrentDate == responseDate.getTime()){
+    //       todayMatches =push(response.data.response[counter])
+
+    //       }
+      
+         
+    //     }
+    //     else{
+    //       flag=false
+    //     }
+    //     counter++
+    //     }
+       
+      
+    //   counter++
+    //   console.log("outter while "+counter)
+
+
+
+    //   }
+
+    
+
+    
+    res.render("home/home", { response: todayMatches });
+
+  }).catch(function (error) {
+    console.error(error);
+  });
+
+
+})
+
 router.get('/test', (req, res) => {
 
   const options = {
