@@ -4,16 +4,25 @@
         color: white
     }
 </style>
-
-    <h1><%=question %></h1>
-    <br>
-    <form action="/quiz/index" method="POST" class="form">
-    <input type="text" id= "choice" name="choice" class="form__input__text"  hidden="hidden">
-    <input onclick="change('<%=choices[0] %>')" type="submit" value="<%=choices[0] %>" >
-    <br>
-    <input onclick="change('<%=choices[1] %>')" type="submit" value="<%=choices[1] %>">
-    <br>
+<div class="card-quiz">
+    <div class="content-quiz">
+        <h1><%=question %></h1>
+        <br>
+        <form action="/quiz/index" method="POST" class="form">
+        <input type="text" id= "choice" name="choice" class="form__input__text"  hidden="hidden">
+       <div class="answer">
+        <input class="a-button" onclick="change('<%=choices[0] %>')" type="submit" value="<%=choices[0] %>" >
+        <br>
+        <input class="a-button" onclick="change('<%=choices[1] %>')" type="submit" value="<%=choices[1] %>">
+        <br>
+        
+        <input class="a-button" onclick="change('<%=choices[2] %>')" type="submit" value="<%=choices[2] %>" >
     
-    <input onclick="change('<%=choices[2] %>')" type="submit" value="<%=choices[2] %>" >
+       </div>
+       
+    </form>
+    
+    </div>
+</div>
 
-</form>
+    

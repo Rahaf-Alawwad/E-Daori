@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-const isAdmin = require("../helper/isNotAdmin");
+const isNotAdmin = require("../helper/isNotAdmin");
 let passport = require("../helper/ppConfig")
 
 const User = require("../models/User");
@@ -50,58 +50,6 @@ router.get('/auth/signup', (req, res) => {
     res.render("user/signup")
 })
 
-
-
-// HTTP GET - ROOT ROUTE OF OUR APPLICATION
-// router.post('/auth/signup', (req, res) => {
-// let newUser = new User(req.body);
-// //console.log("filename : "+ req.file.filename)
-// console.log(req.body);
-
-// let hash = bcrypt.hashSync(req.body.password, salt);
-// newUser.password = hash;
-// //newUser.image = req.file.filename;
-
-
-
-// /*
-// upload(req, res, (err) => {
-//   if(err){
-//     res.render("user/signin", {
-//       msg: err
-//     });
-//   } else {
-//     if(req.file == undefined){
-//       res.render("user/signin", {
-//         msg: 'Error: No File Selected!'
-//       });
-//     } else {
-
-      
-
-//       newUser.save().then(user=>{
-//         res.render("user/signin",{
-//           msg: 'File Uploaded!',
-//           file: `uploads/${req.file.filename}`
-//         });
-        
-//       }).catch(err=>{
-//           console.log(err);
-//       })
-
-
-//     }
-//   }
-// }); */
-
-// });
-
-
-
-
-
-
-
 // HTTP GET - ROOT ROUTE OF OUR APPLICATION
 router.post('/auth/signup',upload.single('image') ,(req, res) => {
   
@@ -109,7 +57,12 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
   
   let hash = bcrypt.hashSync(req.body.password, salt);
   newUser.password = hash;
-  newUser.image = "images/user/"+req.file.filename;
+  if(req.file.filename == null || req.file.filename == undefined || req.file.filename == ""){
+    newUser.image = "images/user/default_img.png";
+  }else{
+    newUser.image = "images/user/"+req.file.filename;
+  }
+  
   
   newUser.save().then(user=>{
       res.redirect("/auth/signin");

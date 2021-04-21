@@ -135,7 +135,6 @@ router.post("/vote/:matchID", isLoggedIn,(req, res) => {
     .then(match => {
       let teamOne=0,teamTwo=0,tie=0;
 
-      console.log(match.votes)
       match.votes.forEach(eleme =>{ //localeCompare
         if(eleme.vote === "tie"){
         tie++

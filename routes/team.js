@@ -121,7 +121,7 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 
-
+// i am
 router.post("/team/favorite",isLoggedIn, (req, res) => {
   console.log("==============");
   console.log(req.query.teamName)
