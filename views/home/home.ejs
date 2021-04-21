@@ -1,52 +1,55 @@
+<%- include('../partials/home.ejs'); %>
 
 <!-- begin -->
-
-
+<br/>
+<h1>Today</h1>
+<br/>
   <% for (let index = response.response.length-1; index >= 0; index--) {%> 
 
     <% const element = response.response[index];%> 
+   
 
-
-  <div class="card"  onclick=" location.href = '/match/details/<%= element.fixture.id %>' " data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+  <div class="card"  onclick=" location.href = '/testing/match/details?id=<%= element.fixture.id %>' " data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+ 
     <div class="content">
       <div class="Row-img"> 
 
         <img  src="<%= element.teams.home.logo %>" alt="Card image cap">
 
-
-
         <img  src="<%= element.teams.away.logo %>" alt="Card image cap">
-        
-       
-
       </div>
-      <div class="Row-name-under-img">
-        <div class="card-body"> 
-          <div class="card-title"> <a href="/team/details/<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
-        </div>
+<div class="under-img">
+  <div class="Row-name-under-img">
+    <div class="card-body"> 
+      <div class="card-title"> <a href="/team/details?matchID=<%= element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details/?id=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
+    </div>
+
+
+  </div>
+  <div class="info">
+    <p class="card-text"><%= element.score.fulltime.home %> &nbsp - &nbsp <%= element.score.fulltime.away %></p>
+      
+    <h4  >Time:<%= element.fixture.timestamp %>  </h4 >
+    <h4  >Time:<%= element.fixture.date %>  </h4 >
+    <h4  >Referee:<%= element.fixture.referee %>  </h4 >
+    <h4  ><%= element.fixture.venue.city %> <%= element.fixture.venue.name %></h4 >
+ 
+    <div class="card-body">
+    <a href="#" class="card-link">Another link</a>
+
 
   
-      </div>
-      <p class="card-text"><%= element.score.fulltime.home %> &nbsp - &nbsp <%= element.score.fulltime.away %></p>
-          
-            <h4  >Time:<%= element.fixture.timestamp %>  </h4 >
-            <h4  >Time:<%= element.fixture.date %>  </h4 >
-            <h4  >Referee:<%= element.fixture.referee %>  </h4 >
-            <h4  ><%= element.fixture.venue.city %> <%= element.fixture.venue.name %></h4 >
-         
-            <div class="card-body">
-            <a href="#" class="card-link">Another link</a>
-            <% let played= element.score.fulltime.home %>
-          <script>//if( played == null){ document.getElementById("voteBtn").setAttribute('hidden', hidden)}</script> 
-
-          <a href ="/vote" id= "voteBtn" type="submit">Vote</a>
-          </div>
-          
+  </div>
+  
+  </div>
+  
+</div>
+      
           
       
     </div>
     
-          
+ 
         </div>
     
 
@@ -55,4 +58,6 @@
    
 
   <% }%>
+
+ 
   <!-- end -->

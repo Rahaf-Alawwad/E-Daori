@@ -50,7 +50,7 @@ body::after{
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.1);
-    overflow: hidden;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +60,7 @@ body::after{
 }
 
 
-.container .card .content{
+.container .card .content .under-img{
     padding: 20px;
     text-align: center;
     transform: translateY(100px);
@@ -68,8 +68,15 @@ body::after{
     transition: 0.5s;
 
 }
+.container .card .content img{
+    opacity:1;
+    transform: translateY(243px);
 
-.container .card:hover .content{
+
+
+}
+
+.container .card:hover .content .under-img{
 
     transform: translateY(0px);
     opacity: 1;
