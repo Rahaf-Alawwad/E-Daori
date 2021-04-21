@@ -67,7 +67,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 
 })
 */
-router.get("/team/details/", (req, res) => {
+router.get("/team/details", (req, res) => {
   let flag = true
   console.log('req.query.teamID')
 
@@ -119,11 +119,15 @@ router.get("/team/details/", (req, res) => {
 
 
 
-router.post("/team/favorite/:id", (req, res) => {
-  console.log(req.params.id)
-  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams: req.params.id } })
+router.post("/team/favorite", (req, res) => {
+  console.log("==============");
+  console.log(req.query.teamName)
+  console.log("==============");
+
+  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.query.teamName,logo:req.query.img}] }})
     .then(user => {
-      res.redirect("/team/details/" + req.params.id)
+      console.log("USer in fav"+user)
+      res.redirect("/team/details?teamID=" + req.query.teamID)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
     .catch(err => {
