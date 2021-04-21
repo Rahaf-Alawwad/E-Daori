@@ -6,11 +6,13 @@
     width: min-content;
     height: min-content;
     margin: 30px;
-    padding: 20px;   
+    padding: 20px;
 }
 </style>
 <a href="/admin/index">index</a>
 <a href="/admin/add">add</a>
+
+
 
 
 <section class="content">
@@ -22,18 +24,18 @@
                     <table class="table table-striped">
                         <thead class="thead-light">
                             <tr>
-                                <th >Question</th>
-                                <th >Choose 1</th>
-                                <th >Choose 2</th>
-                                <th >Correct</th>
-                                <th >Edit</th>
-                                <th >Delete</th>
+                                <th scope="col">Question</th>
+                                <th scope="col">Choose 1</th>
+                                <th scope="col">Choose 2</th>
+                                <th scope="col">Correct</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% question.forEach(element=> { %>
                                 <tr>
-                                    <th >
+                                    <th scope="row">
                                         <%= element.question %>
                                     </th>
                                     <td>
@@ -47,6 +49,8 @@
                                     </td>
 
 
+<<<<<<< HEAD
+=======
                                     <!-- edit btn -->
                                     <td><button onclick=" location.href = '/admin/edit?id=<%= element.id %>' ">Edit
                                         </button></td>
@@ -56,11 +60,7 @@
                                             <input type="submit" value="Delete" class="form__input__submit">
                                         </form>
                                     </td>
-
-
-
-
-
+>>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
                                 </tr>
 
                                 <% }) %>

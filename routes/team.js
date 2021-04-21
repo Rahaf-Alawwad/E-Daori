@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const router = express.Router();
@@ -6,8 +7,15 @@ const axios = require("axios");
 const User = require('../models/User');
 
 
+const isLoggedIn = require("../helper/isLoggedIn");
 
+
+<<<<<<< HEAD
 /* router.get("/team/details/:teamID", (req,res)=>{
+=======
+/* router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
+
+>>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
     const options = {
         method: 'GET',
         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -17,7 +25,12 @@ const User = require('../models/User');
           'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
         }
       };
+<<<<<<< HEAD
 // router.get("/team/details/:teamID", (req,res)=>{
+=======
+// router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
+
+>>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
 //     const options = {
 //         method: 'GET',
 //         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -36,7 +49,8 @@ const User = require('../models/User');
       res.redirect('/team/details')
 }) */
 /*
-router.get("/team/details/:matchID", (req,res)=>{
+router.get("/team/details/:matchID",isLoggedIn, (req,res)=>{
+
  // let flag = true;
          
 //         res.render("team/details" , {team : response.data});
@@ -44,7 +58,13 @@ router.get("/team/details/:matchID", (req,res)=>{
 //           console.error(error);
 //       });
 // })
+<<<<<<< HEAD
 // router.get("/team/details/", (req,res)=>{
+=======
+
+// router.get("/team/details/",isLoggedIn, (req,res)=>{
+
+>>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
 //     const options = {
 //         method: 'GET',
 //         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
@@ -58,7 +78,7 @@ router.get("/team/details/:matchID", (req,res)=>{
        //          });
 })
 */
-router.get("/team/details/", (req, res) => {
+router.get("/team/details",isLoggedIn, (req, res) => {
   let flag = true
   console.log('req.query.teamID')
 
@@ -110,12 +130,8 @@ router.get("/team/details/", (req, res) => {
 
 
 
-
-
-
-
-
-router.post("/team/favorite", (req, res) => {
+// i am
+router.post("/team/favorite",isLoggedIn, (req, res) => {
   console.log("==============");
   console.log(req.query.teamName)
   console.log("==============");
@@ -129,25 +145,12 @@ router.post("/team/favorite", (req, res) => {
     .catch(err => {
       console.log(err);
     })
-})
-
-/* 
-router.post("/team/favorite/:id", (req, res) => {
-  console.log(req.params.id)
-  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams: req.params.id } })
-    .then(user => {
-      res.redirect("/team/details?teamID=" + req.params.id)
-       res.render('team/favoDetails', {response : response.data}) 
-    })
-    .catch(err => {
-      console.log(err);
-    })
-}) */
+}) 
 
 
 
 
-router.get("/player/statstics", (req, res) => {
+router.get("/player/statstics",isLoggedIn, (req, res) => {
   //=================================
   // by LEAGUE ID
   //http://www.json-generator.com/api/json/get/cgCTTDPUjm?indent=2
@@ -194,7 +197,7 @@ router.get("/player/statstics", (req, res) => {
 //================================
 //http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2
 //================================
-router.get("/team/statstics", (req, res) => {
+router.get("/team/statstics",isLoggedIn, (req, res) => {
 
 
   // const options = {
@@ -224,7 +227,7 @@ router.get("/team/statstics", (req, res) => {
 //================================
 //http://www.json-generator.com/api/json/get/coVfiUkhrC?indent=2
 //================================
-router.get("/player/trophies", (req, res) => {
+router.get("/player/trophies",isLoggedIn, (req, res) => {
 
 
   const options = {
@@ -249,7 +252,7 @@ router.get("/player/trophies", (req, res) => {
 //================================
 //http://www.json-generator.com/api/json/get/bVetRIyAgO?indent=2
 //================================
-router.get("/top/scorers", (req, res) => {
+router.get("/top/scorers",isLoggedIn, (req, res) => {
   const options = {
     method: 'GET',
     url: 'https://api-football-v1.p.rapidapi.com/v3/players/topscorers',

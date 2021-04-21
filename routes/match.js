@@ -1,3 +1,4 @@
+  
 const express = require('express');
 
 const router = express.Router();
@@ -7,10 +8,12 @@ const User = require("../models/User");
 const Match = require("../models/Match");
 
 
+const isLoggedIn = require("../helper/isLoggedIn");
+
 
 // HTTP GET - display details a specific match by id
 // for prodaction
-router.get('/match/details', (req, res) => {
+router.get('/match/details',isLoggedIn, (req, res) => {
   /*
   const options = {
     method: 'GET',
@@ -96,7 +99,7 @@ let teamOne=0,teamTwo=0,tie=0;
   });
 }) 
 
-router.post("/vote/:matchID", (req, res) => {
+router.post("/vote/:matchID", isLoggedIn,(req, res) => {
 
   User.findById(req.user.id)
     .then(user => {
@@ -125,14 +128,13 @@ router.post("/vote/:matchID", (req, res) => {
   
   })
 
-  router.get("/vote/:matchID", (req, res) => {
+  router.get("/vote/:matchID",isLoggedIn, (req, res) => {
    
    
     Match.findOne({ fixtureID: req.params.id })
     .then(match => {
       let teamOne=0,teamTwo=0,tie=0;
 
-      console.log(match.votes)
       match.votes.forEach(eleme =>{ //localeCompare
         if(eleme.vote === "tie"){
         tie++
@@ -157,14 +159,6 @@ router.post("/vote/:matchID", (req, res) => {
     .catch(err => {
       console.log(err);
     })
-
-
-
-
-
   })
-  
-
-
 
   module.exports = router;

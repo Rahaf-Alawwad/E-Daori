@@ -1,106 +1,28 @@
+<script>function change(value){document.getElementById("choice").value= value;}</script>
 <style>
-    h1 {
+    h1{
         color: white
     }
 </style>
-<%  let counter = 0   %>
-
-
-    <% let random1 = Math.floor(Math.random() * 10);%>
-
-
-    <h1><%=quizzes[random1].question %></h1>
-    <br>
-    
-    <button class="quizBtn" onclick="'<% myFunction(quizzes[random1].correct,quizzes[random1].choose1) %>'"><%=quizzes[random1].choose1 %></button>
-    <br>
-    
-    <button class="quizBtn" onclick="'<% myFunction(quizzes[random1].correct,quizzes[random1].choose2) %>'"><%=quizzes[random1].choose2 %></button>
-    <br>
-    
-    <button class="quizBtn" onclick="'<% myFunction(quizzes[random1].correct,quizzes[random1].correct) %>'"><%=quizzes[random1].correct %></button>
-
-
-    
-
-    let counter = 0;
-    function myFunction(bestAnswer ,current ) {
-    //   alert("in myFunction"+bestAnswer+current);
-      if (bestAnswer  === current) {
-        console.log(counter);
-        console.log('===============');
-       
-          
-           if (counter < 10) { 
-               console.log(counter)  
-                counter ++ 
-                randomQuestion() 
-           } else { 
-            console.log("correct");  
-        } 
-       }
-       else{ 
-           console.log("error");
-            }
-    }
-    </script>
-        <% randomQuestion() %>
+<div class="card-quiz">
+    <div class="content-quiz">
+        <h1><%=question %></h1>
+        <br>
+        <form action="/quiz/index" method="POST" class="form">
+        <input type="text" id= "choice" name="choice" class="form__input__text"  hidden="hidden">
+       <div class="answer">
+        <input class="a-button" onclick="change('<%=choices[0] %>')" type="submit" value="<%=choices[0] %>" >
+        <br>
+        <input class="a-button" onclick="change('<%=choices[1] %>')" type="submit" value="<%=choices[1] %>">
+        <br>
         
-        <% function randomQuestion() { 
-             console.log("counter"+counter)
-                let random1 = Math.floor(Math.random() * array.length) %>
-                <h1>
-                    <%=array[random1].question %>
-                </h1>
-                <br>
+        <input class="a-button" onclick="change('<%=choices[2] %>')" type="submit" value="<%=choices[2] %>" >
+    
+       </div>
+       
+    </form>
+    
+    </div>
+</div>
 
-                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].choose1 %>' )">
-                    <%=quizzes[random1].choose1 %>
-                </button>
-                <br>
-
-                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].choose2 %>')">
-                    <%=quizzes[random1].choose2 %>
-                </button>
-                <br>
-
-                <button onclick="myFunction('<%=array[random1].correct %>','<%=array[random1].correct %>')">
-                    <%=quizzes[random1].correct %>
-                </button>
-                <button onclick="myFunction('hussain','hussain')">تست</button>
-
-
-                <% }%>
-              
-                        <script>
-                            let array = quizzes;
-                          
-                            function next() {
-                                let random = Math.floor(Math.random() * array.length)
-
-                            }
-                          
-                            function myFunction(bestAnswer, current) {
-                                alert("in myFunction " + bestAnswer + current);
-                              
-                                if (bestAnswer === current) {
-                                    alert(true);
-                                    alert(counter);
-                                    counter=counter+1
-
-
-                                    randomQuestion()
-                                }
-                                if (counter < 10) {
-                                    array.splice(array.indexOf(array[rand]), 1)
-                                    alert("less then 10 "+true);
-
-                                    randomQuestion()
-                                } else {
-                                   alert("correct");
-                                }
-                            }
-                        </script>
-
-
-
+    

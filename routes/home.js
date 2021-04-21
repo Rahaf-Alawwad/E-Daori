@@ -7,6 +7,7 @@ const Match = require("../models/Match");
 const router = express.Router();
 const axios = require("axios");
 
+const isLoggedIn = require("../helper/isLoggedIn");
 
 function getDate(currentDate, addDays) {
   let year = currentDate.getFullYear()
@@ -65,7 +66,7 @@ router.get("/home/last", (req, res) => {
 
   axios.request(options).then(function (response) {
 
-    res.render("home/homeLast", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -92,7 +93,7 @@ router.get("/home/next", (req, res) => {
 
 
   axios.request(options).then(function (response) {
-    res.render("home/homeNext", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -110,7 +111,7 @@ router.get('/home/previous', (req, res) => {
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/homePrevious", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -129,7 +130,7 @@ router.get('/home/upcoming', (req, res) => {
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/homePrevious", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -197,7 +198,7 @@ router.get("/vote", (req, res) => {
   res.render("home/vote")
 })
 
-router.post("/vote", (req, res) => {
+router.post("/vote", isLoggedIn, (req, res) => {
   User.findById(req.user.id)
     .then(user => {
       Match.findOneAndUpdate({ fixtureID: req.body.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
@@ -214,7 +215,7 @@ router.post("/vote", (req, res) => {
 
 })
 
-router.post("/search", (req, res) => {
+router.post("/search", isLoggedIn, (req, res) => {
 
 
   const options = {

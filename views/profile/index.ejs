@@ -1,14 +1,45 @@
-
-<div class="card-profile">
-    <div class="content-profile">
-        <img src="<%=result.image %>" alt="">
-
-        <h1>name: <%=result.name %></h1>
-        <h1>email: <%=result.emailAddress %></h1>
-         <%= result.favoriteTeams %>
+<div class="container-profile">
+    <h3 class="card-title text-center text-white">Profile</h3>
+    <div class="card-profile">
         
-        
-        <a href="/profile/edit"> Edit profile</a>
-        <a href="/profile/delete"> Deactivate account </a>
+        <div class="content-profile">
+            <div class="col1-profile">
+                <img src="<%=result.image %>" alt="">
+    
+                <h1> <%=result.name %></h1>
+                <h1><%=result.emailAddress %></h1>
+                <div class="row1">
+                    <a href="/profile/edit"> Edit profile</a>
+                    <a href="/profile/delete"> Deactivate account </a>
+                </div>
+                
+            </div>
+            <div class="col2-profile">
+                <h1>My Favorite Teams</h1>
+
+              
+                <% result.favoriteTeams.forEach(team =>{ %>
+
+                    <div class="teaminfo">
+                        <h5><%= team.name %></h5>
+                        <img class="teaminfo-logo" src="<%=team.logo %>" alt="">
+                        
+
+                        
+                    </div>
+                    <% })%>
+                
+            </div>
+            <div class="col3-profile">
+                <h1>My Votes</h1>
+    
+                <%= result.voteMatchs %>
+            </div>
+           
+           
+            
+            
+           
+        </div>
     </div>
 </div>
