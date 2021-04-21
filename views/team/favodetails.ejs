@@ -1,7 +1,10 @@
 <div class="card-team-details">
     <div class="content-team-details">
 
-
+        <form method="POST" action="/team/unfavorite/<%= team.response.team.id %>">
+            <input id="favBtn" type="submit" value="Unfavorite"></input>
+        </form>
+        
         <%console.log(team.response.team.logo)%>
 
             <img  src="<%=team.response.team.logo %>" alt="Card image cap">
@@ -56,10 +59,7 @@
                 <a href="#" class="card-link">Another link</a>
             </div>
 
-            <form method="POST" action="/team/unfavorite/<%= team.response.team.id %>">
-                <input id="favBtn" type="submit" value="Unfavorite"></input>
-            </form>
-            
+         
 
     </div>
 </div>

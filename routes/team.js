@@ -8,7 +8,6 @@ const User = require('../models/User');
 
 
 /* router.get("/team/details/:teamID", (req,res)=>{
-
     const options = {
         method: 'GET',
         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -19,7 +18,6 @@ const User = require('../models/User');
         }
       };
 // router.get("/team/details/:teamID", (req,res)=>{
-
 //     const options = {
 //         method: 'GET',
 //         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -31,7 +29,6 @@ const User = require('../models/User');
 //       };
       
 //       axios.request(options).then(function (response) {
-
         res.render("team/details" , {response : response.data});
       }).catch(function (error) {
           console.error(error);
@@ -40,7 +37,6 @@ const User = require('../models/User');
 }) */
 /*
 router.get("/team/details/:matchID", (req,res)=>{
-
  // let flag = true;
          
 //         res.render("team/details" , {team : response.data});
@@ -48,89 +44,42 @@ router.get("/team/details/:matchID", (req,res)=>{
 //           console.error(error);
 //       });
 // })
-
 // router.get("/team/details/", (req,res)=>{
-
 //     const options = {
 //         method: 'GET',
 //         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
-
-<<<<<<< HEAD
-     //   axios.request(options).then(function (response) {
-=======
         // axios.request(options).then(function (response) {
->>>>>>> 8f40c4476e3ca56340a8e2277aa5cbf7c119ff1a
 //         axios.request(options).then(function (response) {
             
 //             res.render("team/details" , {response : response.data});
-
 //         })
 //         .catch(function (error) {
 //                    console.error(error);
-<<<<<<< HEAD
-//                 });
-
- })
-*/
-router.get("/team/details/:matchID", (req,res)=>{
-=======
        //          });
-
 })
 */
 router.get("/team/details/", (req, res) => {
   let flag = true
   console.log('req.query.teamID')
->>>>>>> 8f40c4476e3ca56340a8e2277aa5cbf7c119ff1a
 
   console.log(req.query.teamID)
   const options = {
     method: 'GET',
     url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'
   };
-
+  
   axios.request(options).then(function (team) {
     // res.render("team/details" , {team : team.data });
-
-
+    
+    
     const options2 = {
       method: 'GET',
-<<<<<<< HEAD
-      url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'};
-
-      axios.request(options).then(function (team) {
-        // res.render("team/details" , {team : team.data });
-
-
-        const options2 = {
-          method: 'GET',
-          url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'};
-    
-          axios.request(options2).then(function (player) {
-             res.render("team/details" , {team : team.data , player:player.data});
-          })
-          
-          .catch(function (error) {
-            console.error(error);
-         });
-      })
-      .catch(function (error) {
-                 console.error(error);
-              });
-
-          User.findById(req.user.id).then(result=>{
-            result.favoriteTeams.forEach(element => {
-              if(flag && element===req.query.matchID){
-                flag=false;
-          res.render('team/favodetails', {response : response.data})   
-         /*res.json({response : response.data})  */
-        }
-=======
       url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'
     };
-
+    
     axios.request(options2).then(function (player) {
-
+      console.log(req.query.teamID)
+      
       User.findById(req.user.id).then(result => {
        console.log(result)
         result.favoriteTeams.forEach(element => {
@@ -139,19 +88,10 @@ router.get("/team/details/", (req, res) => {
             res.render('team/favodetails', { team: team.data, player: player.data })
             /*res.json({response : response.data})  */
           }
->>>>>>> 8f40c4476e3ca56340a8e2277aa5cbf7c119ff1a
         });
         if (flag) {
           res.render("team/details", { team: team.data, player: player.data });
         }
-<<<<<<< HEAD
-        
-          }).catch(err => console.log(err))
-                })
-        
- 
-
-=======
 
       }).catch(err => console.log(err))
 
@@ -166,7 +106,6 @@ router.get("/team/details/", (req, res) => {
 
 
 })
->>>>>>> 8f40c4476e3ca56340a8e2277aa5cbf7c119ff1a
 
 
 
@@ -176,7 +115,7 @@ router.post("/team/favorite/:id", (req, res) => {
   console.log(req.params.id)
   User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams: req.params.id } })
     .then(user => {
-      res.redirect("/team/details/" + req.params.id)
+      res.redirect("/team/details?teamID=" + req.params.id)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
     .catch(err => {
