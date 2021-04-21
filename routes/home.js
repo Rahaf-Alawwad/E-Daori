@@ -66,7 +66,7 @@ router.get("/home/last", (req, res) => {
 
   axios.request(options).then(function (response) {
 
-    res.render("home/homeLast", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -93,7 +93,7 @@ router.get("/home/next", (req, res) => {
 
 
   axios.request(options).then(function (response) {
-    res.render("home/homeNext", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -111,7 +111,7 @@ router.get('/home/previous', (req, res) => {
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/homePrevious", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });
@@ -130,7 +130,7 @@ router.get('/home/upcoming', (req, res) => {
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/homePrevious", { response: response.data });
+    res.render("home/home", { response: response.data });
   }).catch(function (error) {
     console.error(error);
   });

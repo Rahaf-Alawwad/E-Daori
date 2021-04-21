@@ -57,7 +57,26 @@ router.get("/profile/auth", isNotAdmin,(req, res) => {
 router.get("/profile",isLoggedIn,(req, res) => {
 
     User.findById(req.user.id).then(result => {
-        res.render("profile/index", { result });
+        result.voteMatchs.forEach(element => {
+            console.log('==================');
+            console.log(element.match);
+            console.log('==================');
+
+            Match.findById(element.match).then(mymatch=>{
+                console.log('mymatch');
+
+                console.log(mymatch.teamTwo);
+                console.log('mymatch');
+               
+                temp=[{teamOne:mymatch.teamOne,teamTwo:mymatch.teamTwo,vote:element.vote}]
+                console.log('temp');
+                console.log(temp);
+                console.log('temp');
+                myvotes.push(temp)
+            }).catch(err=>console.log(err) )
+        });
+        console.log(myvotes);
+        res.render("profile/index", { result ,myvotes});
     }).catch(err => {
         console.log(err);
     })
