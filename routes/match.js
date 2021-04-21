@@ -6,12 +6,13 @@ const axios = require("axios");
 const User = require("../models/User");
 const Match = require("../models/Match");
 
+
 const isLoggedIn = require("../helper/isLoggedIn");
 
 
 // HTTP GET - display details a specific match by id
 // for prodaction
-router.get('/match/details', isLoggedIn, (req, res) => {
+router.get('/match/details',isLoggedIn, (req, res) => {
   /*
   const options = {
     method: 'GET',
@@ -35,7 +36,7 @@ router.get('/match/details', isLoggedIn, (req, res) => {
 });
 
 // only for test
-router.get('/testing/match/details', isLoggedIn, (req, res) => {
+router.get('/testing/match/details', (req, res) => {
 
 let flag = true;
 let arr;
@@ -97,7 +98,7 @@ let teamOne=0,teamTwo=0,tie=0;
   });
 }) 
 
-router.post("/vote/:matchID", (req, res) => {
+router.post("/vote/:matchID", isLoggedIn,(req, res) => {
 
   User.findById(req.user.id)
     .then(user => {
@@ -126,7 +127,7 @@ router.post("/vote/:matchID", (req, res) => {
   
   })
 
-  router.get("/vote/:matchID", isLoggedIn,(req, res) => {
+  router.get("/vote/:matchID",isLoggedIn, (req, res) => {
    
    
     Match.findOne({ fixtureID: req.params.id })
@@ -158,14 +159,6 @@ router.post("/vote/:matchID", (req, res) => {
     .catch(err => {
       console.log(err);
     })
-
-
-
-
-
   })
-  
-
-
 
   module.exports = router;

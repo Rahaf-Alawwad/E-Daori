@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-const isAdmin = require("../helper/isAdmin");
+const isAdmin = require("../helper/isNotAdmin");
 let passport = require("../helper/ppConfig")
 
 const User = require("../models/User");

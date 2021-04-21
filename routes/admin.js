@@ -8,7 +8,7 @@ const User = require("../models/User");
 const Match = require("../models/Match");
 const Quizzes = require("../models/Quizzes");
 
-const isAdmin = require("../helper/isAdmin");
+const isAdmin = require("../helper/isNotAdmin");
 
 // add matches to the DB
 router.get("/admin/match",isAdmin, (req,res)=>{

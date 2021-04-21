@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const router = express.Router();
@@ -5,9 +6,11 @@ const router = express.Router();
 const axios = require("axios");
 const User = require('../models/User');
 
+
 const isLoggedIn = require("../helper/isLoggedIn");
 
-/* router.get("/team/details/:teamID", isLoggedIn,(req,res)=>{
+
+/* router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
 
     const options = {
         method: 'GET',
@@ -18,7 +21,7 @@ const isLoggedIn = require("../helper/isLoggedIn");
           'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
         }
       };
-// router.get("/team/details/:teamID", (req,res)=>{
+// router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
 
 //     const options = {
 //         method: 'GET',
@@ -39,7 +42,7 @@ const isLoggedIn = require("../helper/isLoggedIn");
       res.redirect('/team/details')
 }) */
 /*
-router.get("/team/details/:matchID", (req,res)=>{
+router.get("/team/details/:matchID",isLoggedIn, (req,res)=>{
 
  // let flag = true;
          
@@ -49,7 +52,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 //       });
 // })
 
-// router.get("/team/details/", isLoggedIn,(req,res)=>{
+// router.get("/team/details/",isLoggedIn, (req,res)=>{
 
 //     const options = {
 //         method: 'GET',
@@ -67,7 +70,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 
 })
 */
-router.get("/team/details/", isLoggedIn,(req, res) => {
+router.get("/team/details",isLoggedIn, (req, res) => {
   let flag = true
   console.log('req.query.teamID')
 
@@ -119,11 +122,15 @@ router.get("/team/details/", isLoggedIn,(req, res) => {
 
 
 
-router.post("/team/favorite/:id",isLoggedIn, (req, res) => {
-  console.log(req.params.id)
-  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams: req.params.id } })
+router.post("/team/favorite",isLoggedIn, (req, res) => {
+  console.log("==============");
+  console.log(req.query.teamName)
+  console.log("==============");
+
+  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.query.teamName,logo:req.query.img}] }})
     .then(user => {
-      res.redirect("/team/details/" + req.params.id)
+      console.log("USer in fav"+user)
+      res.redirect("/team/details?teamID=" + req.query.teamID)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
     .catch(err => {
@@ -134,7 +141,7 @@ router.post("/team/favorite/:id",isLoggedIn, (req, res) => {
 
 
 
-router.get("/player/statstics", isLoggedIn,(req, res) => {
+router.get("/player/statstics",isLoggedIn, (req, res) => {
   //=================================
   // by LEAGUE ID
   //http://www.json-generator.com/api/json/get/cgCTTDPUjm?indent=2

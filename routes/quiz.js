@@ -20,7 +20,7 @@ router.get("/quiz/index", isLoggedIn,(req, res) => {
     shuffled = choices.sort(() => Math.random() - 0.5)
     
    
-    res.render("quiz/index2", { question, shuffled });
+    res.render("quiz/index", { question, shuffled });
 
 })
 
@@ -34,7 +34,7 @@ router.post("/quiz/index", (req, res) => {
     shuffled = choices.sort(() => Math.random() - 0.5)
     
    
-    res.render("quiz/index2", { question, shuffled });
+    res.render("quiz/index", { question, shuffled });
     }
 
     else{

@@ -6,7 +6,31 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+html{
+    width:100%
+}
+#main-nav{
+    display: flex;
+    justify-content:space-evenly;
+
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+}
+#main-nav *{
+    flex-grow: 1;
+    align-items:center;
+  
+}
+
+#main-nav #welcome-msg{
+    color: grey;
+    align-items: baseline;
+}
 body{
+    width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +38,7 @@ body{
     background: #161623;
 }
 body::before{
+    
     content: '';
     position: absolute;
     top: 0;
@@ -24,6 +49,7 @@ body::before{
     clip-path: circle(30% at right);
 }
 body::after{
+   
     content: '';
     position: absolute;
     top: 0;
@@ -31,9 +57,10 @@ body::after{
     width: 100%;
     height: 100%;
     background: linear-gradient(#2196f3,#e91e63);
-    clip-path: circle(20% at 10% 35%);
+    clip-path: circle(20% at 10% 40%);
 }
 .container{
+    margin-top:10%;
     position: relative;
     display: flex;
     justify-content: center;

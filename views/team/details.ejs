@@ -1,29 +1,105 @@
+<style>
+    .fav-btn {
+	display:flex;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+
+@keyframes favme-anime {
+  0%   { 
+		opacity: 1;
+		font-size: ms(0);
+		-webkit-text-stroke-color: transparent;
+	}
+	25%	 { 
+		opacity:.6;
+		color: #FFF;
+		font-size: ms(-2);
+		-webkit-text-stroke-width: 1px;
+   	-webkit-text-stroke-color: #DC3232;
+	}
+	75%	 { 
+		opacity:.6;
+		color: #FFF;
+		font-size: ms(3);
+		-webkit-text-stroke-width: 1px;
+   	-webkit-text-stroke-color: #DC3232;
+	}
+  100% { 
+		opacity: 1;
+		font-size: ms(2);
+		-webkit-text-stroke-color: transparent;
+	}
+}
+
+@keyframes favme-hover {
+	from {
+		font-size: ms(3);
+	}
+	80% {
+		font-size: ms(2);
+	}
+}
+
+.favme {
+	display:block;
+	font-size: ms(2);
+	width: auto;
+	height: auto;
+	cursor: pointer;
+	box-shadow: none;
+	transition: all .2s ease;
+	color: #CBCDCE;
+	margin: 0;}
+	
+    .favme:active {
+		color: #DC3232;
+	}
+	.favme:hover {
+		animation: favme-hover .3s infinite alternate;
+	}
+	.favme.is_animating {
+		animation: favme-anime .3s;
+	}
+
+
+</style>
+<div class="card-team-details">
+	<div class="fav-btn">
+		<span href="" class="favme dashicons dashicons-heart"></span>
+	</div>
+
+</div>
+<div class="card-team-details">
+    <img  src="<%=team.response.team.logo %>" alt="Card image cap">
+           
+    <h2 class="card-title">
+        <%= team.response.team.name %>
+    </h2>
+
+    
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Goals: <%=team.response.goals.against.total.total%> </li>
+        <li class="list-group-item">lineups: <%=team.response.lineups[0].formation%> </li>
+        <li class="list-group-item">clean sheet: <%=team.response.clean_sheet.total%> </li>
+        <li class="list-group-item">penalty: <%=team.response.penalty.total%> scored: <%=team.response.penalty.scored.percentage%>  missed: <%=team.response.penalty.missed.percentage%> </li>
+        <li class="list-group-item">record: Wins: <%=team.response.fixtures.wins.total%> Draws: <%=team.response.fixtures.draws.total%> loses:  <%=team.response.fixtures.loses.total%></li>
+
+        <li class="list-group-item">played: <%=team.response.fixtures.played.total%> </li>
+    </ul>
+  
+    <form method="POST" action="/team/favorite?teamID=<%= team.response.team.id %>">
+        <input  value="Favorite" type="submit"><span href="" class="favme dashicons dashicons-heart"></span></input>
+
+    </form>
+</div>
+
 <div class="card-team-details">
     <div class="content-team-details">
 
 
-        <%console.log(team.response.team.logo)%>
-
-            <img  src="<%=team.response.team.logo %>" alt="Card image cap">
-           
-                <h2 class="card-title">
-                    <%= team.response.team.name %>
-                </h2>
-          
-
-
-
-
-
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Goals: <%=team.response.goals.against.total.total%> </li>
-                <li class="list-group-item">lineups: <%=team.response.lineups[0].formation%> </li>
-                <li class="list-group-item">clean sheet: <%=team.response.clean_sheet.total%> </li>
-                <li class="list-group-item">penalty: <%=team.response.penalty.total%> scored: <%=team.response.penalty.scored.percentage%>  missed: <%=team.response.penalty.missed.percentage%> </li>
-                <li class="list-group-item">record: Wins: <%=team.response.fixtures.wins.total%> Draws: <%=team.response.fixtures.draws.total%> loses:  <%=team.response.fixtures.loses.total%></li>
-
-                <li class="list-group-item">played: <%=team.response.fixtures.played.total%> </li>
-            </ul>
 
                 <table class="table table-striped">
                     <tr>
@@ -50,16 +126,8 @@
                 </table>
 
 
-       
 
-            <div class="card-body">
-                <a href="#" class="card-link">Another link</a>
-            </div>
-
-
-            <form method="POST" action="/team/favorite/<%= team.response.team.id %>">
-                <input id="favBtn" type="submit">favorite</input>
-            </form>
 
     </div>
+
 </div>
