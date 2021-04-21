@@ -33,7 +33,7 @@ router.get('/match/details',isLoggedIn, (req, res) => {
     console.error(error);
   });*/
 
-  res.redirect("/test/match/details")
+  res.redirect("/testing/match/details")
 });
 
 // only for test
@@ -49,11 +49,11 @@ let teamOne=0,teamTwo=0,tie=0;
   };
 
   axios.request(options).then(function (response) {
-    console.log("match id"+ req.query.id);
+    console.log("match id here?"+ req.query.matchID);
     console.log("user id"+ req.user.id);
   
     User.findById(req.user.id).then(user=>{
-      Match.findOne({fixtureID:req.query.id}).then(match=>{
+      Match.findOne({fixtureID:req.query.matchID}).then(match=>{
         console.log(match);
         user.voteMatchs.forEach(elem=>{
         console.log(elem.match+" === "+match.id);
@@ -84,6 +84,7 @@ let teamOne=0,teamTwo=0,tie=0;
   
         })
         if (flag){
+
           res.render("match/details", { response: response.data});
         }
       }).catch(err =>{
@@ -99,19 +100,19 @@ let teamOne=0,teamTwo=0,tie=0;
   });
 }) 
 
-router.post("/vote/:matchID", isLoggedIn,(req, res) => {
+router.post("/vote", isLoggedIn,(req, res) => {
 
   User.findById(req.user.id)
     .then(user => {
 
-      Match.findOneAndUpdate({ fixtureID: req.params.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
+      Match.findOneAndUpdate({ fixtureID: req.query.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
         .then(update => {
          
 
           User.findByIdAndUpdate(req.user.id, { $push: { voteMatchs: [{ match: update, vote: req.body.vote }] } })
           .then(result => {
             console.log(result);
-            res.redirect("/vote/"+req.params.matchID);
+            res.redirect("/vote?matchID="+req.query.matchID);
           })
             .catch(err => {
               console.log(err);
@@ -128,14 +129,12 @@ router.post("/vote/:matchID", isLoggedIn,(req, res) => {
   
   })
 
-  router.get("/vote/:matchID",isLoggedIn, (req, res) => {
-   
-   
-    Match.findOne({ fixtureID: req.params.id })
+  router.get("/vote",isLoggedIn, (req, res) => {
+    Match.findOne({ fixtureID: req.query.matchID})
     .then(match => {
       let teamOne=0,teamTwo=0,tie=0;
-
-      console.log(match.votes)
+      console.log("____________________"+match)
+      
       match.votes.forEach(eleme =>{ //localeCompare
         if(eleme.vote === "tie"){
         tie++
@@ -149,13 +148,13 @@ router.post("/vote/:matchID", isLoggedIn,(req, res) => {
       })
       console.log(`teamOne: ${Math.round(((teamOne/match.votes.length)*100))}% ! teamTwo: ${Math.round(((teamTwo/match.votes.length)*100))}% ! tie: ${Math.round(((tie/match.votes.length)*100))}%`);
   
-
+    
       let arr=[
         Math.round(((teamOne/match.votes.length)*100)),
         Math.round(((teamTwo/match.votes.length)*100)),
         Math.round(((tie/match.votes.length)*100))
       ]
-      res.redirect('/test/match/details/'+arr) 
+      res.redirect('/testing/match/details?arr='+arr) 
     })
     .catch(err => {
       console.log(err);

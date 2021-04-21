@@ -8,6 +8,7 @@ const router = express.Router();
 const axios = require("axios");
 
 const isLoggedIn = require("../helper/isLoggedIn");
+const { render } = require('ejs');
 
 function getDate(currentDate, addDays) {
   let year = currentDate.getFullYear()
@@ -16,6 +17,9 @@ function getDate(currentDate, addDays) {
   return (year + "-" + month + "-" + day)
 }
 
+router.get("/test/button",(req,res)=>{
+  res.render("test")
+})
 router.get("/home/current", (req, res) => {
   //let currrentDate = getDate(new Date(),0)
   // const options = {
@@ -194,26 +198,26 @@ router.get('/prediction', (req,res)=>{
   });
 }) */
 
-router.get("/vote", (req, res) => {
-  res.render("home/vote")
-})
+// router.get("/vote", (req, res) => {
+//   res.render("home/vote")
+// })
 
-router.post("/vote", isLoggedIn, (req, res) => {
-  User.findById(req.user.id)
-    .then(user => {
-      Match.findOneAndUpdate({ fixtureID: req.body.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
-        .then(update => {
-          res.render("home/vote")
-        })
-        .catch(err => {
-          console.log(err);
-        })
+// router.post("/vote", isLoggedIn, (req, res) => {
+//   User.findById(req.user.id)
+//     .then(user => {
+//       Match.findOneAndUpdate({ fixtureID: req.body.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
+//         .then(update => {
+//           res.render("home/vote")
+//         })
+//         .catch(err => {
+//           console.log(err);
+//         })
 
-    }).catch(err => {
-      console.log(err);
-    })
+//     }).catch(err => {
+//       console.log(err);
+//     })
 
-})
+// })
 
 router.post("/search", isLoggedIn, (req, res) => {
 

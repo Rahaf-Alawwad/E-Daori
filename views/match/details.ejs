@@ -42,7 +42,7 @@ background-color: red;
         <div class="form_conianer">
             
         
-            <form  id ="voteChoice" action="/vote/<%= response.response[0].fixture.id %>" method="POST" class="form">
+            <form  id ="voteChoice" action="/vote?matchID=<%=response.response[0].fixture.id %>" method="POST" class="form">
            
               <h2> Vote</h2>
             
@@ -58,4 +58,3 @@ background-color: red;
     
 
 
-<script src="../routes/match.js"></script>
