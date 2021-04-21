@@ -1,3 +1,4 @@
+  
 const express = require('express');
 
 const router = express.Router();
@@ -157,14 +158,6 @@ router.post("/vote/:matchID", (req, res) => {
     .catch(err => {
       console.log(err);
     })
-
-
-
-
-
   })
-  
-
-
 
   module.exports = router;
