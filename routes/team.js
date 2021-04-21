@@ -38,7 +38,7 @@ const User = require('../models/User');
       }); 
       res.redirect('/team/details')
 }) */
-
+/*
 router.get("/team/details/:matchID", (req,res)=>{
 
   let flag = true;
@@ -55,7 +55,7 @@ router.get("/team/details/:matchID", (req,res)=>{
 //         method: 'GET',
 //         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
 
-        axios.request(options).then(function (response) {
+     //   axios.request(options).then(function (response) {
 //         axios.request(options).then(function (response) {
             
 //             res.render("team/details" , {response : response.data});
@@ -65,9 +65,9 @@ router.get("/team/details/:matchID", (req,res)=>{
 //                    console.error(error);
 //                 });
 
-// })
-
-router.get("/team/details/", (req,res)=>{
+ })
+*/
+router.get("/team/details/:matchID", (req,res)=>{
 
   const options = {
       method: 'GET',
@@ -82,11 +82,7 @@ router.get("/team/details/", (req,res)=>{
           url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'};
     
           axios.request(options2).then(function (player) {
-
-
-           
-
-            res.render("team/details" , {team : team.data , player:player.data});
+             res.render("team/details" , {team : team.data , player:player.data});
           })
           
           .catch(function (error) {
@@ -99,7 +95,7 @@ router.get("/team/details/", (req,res)=>{
 
           User.findById(req.user.id).then(result=>{
             result.favoriteTeams.forEach(element => {
-              if(flag && element===req.params.matchID){
+              if(flag && element===req.query.matchID){
                 flag=false;
           res.render('team/favodetails', {response : response.data})   
          /*res.json({response : response.data})  */
@@ -113,7 +109,7 @@ router.get("/team/details/", (req,res)=>{
                 })
         
  
-})
+
 
 
 router.post("/team/favorite/:id", (req,res)=>{

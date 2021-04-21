@@ -1,33 +1,47 @@
-<head>
-    <link rel="stylesheet" href="css/auth.css">
-   
-</head>
 
-<div class="card-auth">
-    <div class="content-auth">
-        <div class="form_conianer">
-            <form action="/auth/signup" method= "POST" class="form">
-                <h2> Create Your account</h2>
-                <br>
-            <input type="text" name="name" class="form__input__text" placeholder="Enter your name">
-            <br>
-            <input type="email" name="emailAddress" class="form__input__text" placeholder="Enter your email">
-            <br>
-            <input type="password" name ="password" class="form__input__text"  placeholder="Enter your password">
-            <br>
-            
-            <input id ="profileImage" name ="image" type="file" class="form__input__text" >
-            <br>
-        
-            <input type="submit" value="Sing Up" class="form__input__submit">
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Create new accunte</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="/auth/signup" method="POST" class="form">
+              <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputName">Username</label>
+                    <input  type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter name">
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="emailAddress"  class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <label class="custom-file-label" for="exampleInputFile" id="profileImage" name ="image" type="file">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Sing Up</button>
+              </div>
             </form>
-            <br>
-        
-        
-            <p>already have an account? </p> 
-            <a href="/auth/signin"> log in</a>
-            
-        </div>
-        
-    </div>
-</div>
+          </div>
+          <!-- /.card -->
+
+
