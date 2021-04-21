@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
       type: String,
         
     },
-    favoriteTeams:[{type: String}]
+    favoriteTeams:[{name: String,logo:String}]
     ,
 
     voteMatchs:[{

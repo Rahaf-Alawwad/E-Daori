@@ -1,7 +1,7 @@
 <div class="card-team-details">
     <div class="content-team-details">
       
-        <form method="POST" action="/team/favorite/<%= team.response.team.id %>">
+        <form method="POST" action="/team/favorite?teamID=<%= team.response.team.id %>">
             <input id="favBtn" type="submit">favorite</input>
         </form>
 

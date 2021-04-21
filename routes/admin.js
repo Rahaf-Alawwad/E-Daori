@@ -83,6 +83,8 @@ router.get("/admin/edit", (req, res) => {
  })
  
  router.post("/admin/edit", (req,res)=>{
+     console.log('req.query.id')
+     console.log(req.query.id)
     Quizzes.findByIdAndUpdate(req.query.id,req.body).then(()=>{
         res.redirect('/admin/index')
     }).catch(err =>{
