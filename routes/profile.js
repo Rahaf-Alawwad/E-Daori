@@ -10,8 +10,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-
-
+const isLoggedIn = require("../helper/isLoggedIn");
+const isNotAdmin = require("../helper/isNotAdmin");
 
 
 const storage = multer.diskStorage({
@@ -49,8 +49,13 @@ var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
 
 
-router.get("/profile", (req, res) => {
-let myvotes =[];
+router.get("/profile/auth", isNotAdmin,(req, res) => {
+    res.redirect("/profile");
+
+})
+
+router.get("/profile",isLoggedIn,(req, res) => {
+
     User.findById(req.user.id).then(result => {
         result.voteMatchs.forEach(element => {
             console.log('==================');
@@ -77,8 +82,7 @@ let myvotes =[];
     })
 })
 
-
-router.get("/profile/edit", (req, res) => {
+router.get("/profile/edit", isLoggedIn, (req, res) => {
 
     User.findById(req.user.id).then(result => {
         res.render("profile/edit", { result });
@@ -88,7 +92,7 @@ router.get("/profile/edit", (req, res) => {
 })
 
 
-router.post("/profile/edit", upload.single("image"),(req, res) => {
+router.post("/profile/edit", isLoggedIn,upload.single("image"),(req, res) => {
 let userupdate= new User(req.body)
 console.log(req.body);
 console.log(req.file);
@@ -111,14 +115,14 @@ userupdate.image= "images/user/"+req.file.filename;
 })
 
 
-router.get("/edit/Password", (req, res) => {
+router.get("/edit/Password", isLoggedIn,(req, res) => {
 
     res.render("profile/Password");
 
 })
 
 
-router.post("/edit/Password", (req, res) => {
+router.post("/edit/Password", isLoggedIn,(req, res) => {
     if (req.user.verifyPassword(req.body.password_old)) {
         if (req.body.password_new == req.body.password_varify) {
 
@@ -148,7 +152,7 @@ router.post("/edit/Password", (req, res) => {
 })
 
 
-router.delete("/profile/edit/delete", (req, res) => {
+router.delete("/profile/edit/delete", isLoggedIn,(req, res) => {
     User.findById(req.user)
         .then(() => {
             Match.findByIdAndUpdate(req.query.id,
@@ -160,7 +164,7 @@ router.delete("/profile/edit/delete", (req, res) => {
 })
 })
 
-router.get("/profile/delete", (req,res)=>{
+router.get("/profile/delete", isLoggedIn,(req,res)=>{
     User.findByIdAndDelete(req.user.id)
         .then(() => {
                 res.redirect("/auth/signup")

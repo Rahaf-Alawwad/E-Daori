@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-
+const isAdmin = require("../helper/isNotAdmin");
 let passport = require("../helper/ppConfig")
 
 const User = require("../models/User");
@@ -26,6 +26,9 @@ const upload = multer({
     checkFileType(file, cb);
   }
 })
+
+
+
 
 // Check File Type
 function checkFileType(file, cb){
@@ -119,13 +122,13 @@ router.get('/auth/signin', (req, res) => {
     res.render("user/signin")
 })
 
-router.post(
-    "/auth/signin",
+router.post("/auth/signin",
     passport.authenticate("local", {
       successRedirect: "/home/current",
       failureRedirect: "/auth/signin"
     })
   );
+  
 
 
 router.get("/auth/logout", (req, res) => {
