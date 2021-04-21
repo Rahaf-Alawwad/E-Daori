@@ -11,7 +11,7 @@ const path = require('path');
 const fs = require('fs');
 
 const isLoggedIn = require("../helper/isLoggedIn");
-const isNotAdmin = require("../helper/isNotAdmin");
+const isAdmin = require("../helper/isAdmin");
 
 
 const storage = multer.diskStorage({
@@ -49,13 +49,13 @@ var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
 
 
-router.get("/profile/auth", isNotAdmin,(req, res) => {
+router.get("/profile/auth",(req, res) => {
     res.redirect("/profile");
 
 })
 
 router.get("/profile",isLoggedIn,(req, res) => {
-
+let myvotes =[]
     User.findById(req.user.id).then(result => {
         result.voteMatchs.forEach(element => {
             console.log('==================');

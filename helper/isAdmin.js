@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-    if(req.user.id == "607fd96f0f16833b447cdb36")
+    if(req.user.id == "60800d1e8196f760c061b28a")
     {
         res.redirect('/admin/index'); 
     }

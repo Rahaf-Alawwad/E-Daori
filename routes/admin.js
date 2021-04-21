@@ -8,10 +8,10 @@ const User = require("../models/User");
 const Match = require("../models/Match");
 const Quizzes = require("../models/Quizzes");
 
-const isAdmin = require("../helper/isNotAdmin");
+const isAdmin = require("../helper/isAdmin");
 
 // add matches to the DB
-router.get("/admin/match",isAdmin, (req,res)=>{
+router.get("/admin/match", (req,res)=>{
 
     const options = {
         method: 'GET',
