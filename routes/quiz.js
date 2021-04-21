@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 let quizzes = require("../public/quiz.json")
 
-
+const isLoggedIn = require("../helper/isLoggedIn");
 
 let quizzQuestions = []
 let score=0
@@ -12,7 +12,7 @@ shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
 quizzQuestions =[...shuffledQuestions]
 
 
-router.get("/quiz/index", (req, res) => {
+router.get("/quiz/index", isLoggedIn,(req, res) => {
 
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
