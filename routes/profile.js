@@ -55,6 +55,7 @@ router.get("/profile/auth", isNotAdmin,(req, res) => {
 })
 
 router.get("/profile",isLoggedIn,(req, res) => {
+    let myvotes=[]
 
     User.findById(req.user.id).then(result => {
         result.voteMatchs.forEach(element => {

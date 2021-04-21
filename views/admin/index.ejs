@@ -1,41 +1,71 @@
-
-
+<style>
+    .table {
+        color: white;
+    }
+    .container .card{
+    width: min-content;
+    height: min-content;
+    margin: 30px;
+    padding: 20px;
+}
+</style>
 <a href="/admin/index">index</a>
 <a href="/admin/add">add</a>
 <a href="/admin/edit">edit</a>
-     <table class="table table-striped">
-        <tr>
-            <th>question</th>
-            <th>choose1</th>
-            <th>choose2</th>
-            <th>correct</th>
-          </tr>
-          
-<% question.forEach(element => { %>
-<tr>
-<td><%= element.question %></td>
-<td><%= element.choose1 %></td>
-<td><%= element.choose2 %></td>
-<td><%= element.correct %></td>
-
-
-<td><button onclick=" location.href = '/admin/edit?id=<%= element.id %>' ">Edit </butto></td>
-<!-- detele btn -->
-<td><form action="/admin/delete?id=<%= element.id %>" method="POST">
-  
-    <input type="submit" value="Delete" class="form__input__submit">
-    </form> </td>
-
-</tr>
-<% }) %>
-    </table>
 
 
 
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Question</th>
+                                <th scope="col">Choose 1</th>
+                                <th scope="col">Choose 2</th>
+                                <th scope="col">Correct</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% question.forEach(element=> { %>
+                                <tr>
+                                    <th scope="row">
+                                        <%= element.question %>
+                                    </th>
+                                    <td>
+                                        <%= element.choose1 %>
+                                    </td>
+                                    <td>
+                                        <%= element.choose2 %>
+                                    </td>
+                                    <td>
+                                        <%= element.correct %>
+                                    </td>
 
 
+                                    <!-- edit btn -->
+                                    <td><button onclick=" location.href = '/admin/edit?id=<%= element.id %>' ">Edit
+                                        </button></td>
+                                    <!-- detele btn -->
+                                    <td>
+                                        <form action="/admin/delete?id=<%= element.id %>" method="POST">
+                                            <input type="submit" value="Delete" class="form__input__submit">
+                                        </form>
+                                    </td>
+                                </tr>
 
+                                <% }) %>
+                        </tbody>
+                    </table>
 
-
-
-
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
