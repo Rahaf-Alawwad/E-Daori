@@ -104,9 +104,15 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
   
   let newUser = new User(req.body);
   
+
   let hash = bcrypt.hashSync(req.body.password, salt);
   newUser.password = hash;
-  newUser.image = "images/user/"+req.file.filename;
+  if(req.file.filename == null || req.file.filename == undefined || req.file.filename == ""){
+    newUser.image = "images/user/default_img.png";
+  }else{
+    newUser.image = "images/user/"+req.file.filename;
+  }
+  
   
   newUser.save().then(user=>{
       res.redirect("/auth/signin");
