@@ -1,8 +1,8 @@
 
 .container .card-edit-profile{
     position: relative;
-    width: 650px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     margin: 30px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -18,16 +18,10 @@
 .container .card-edit-profile .content-edit-profile{
     padding: 20px;
     text-align: center;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: 0.5s;
+    color: white;
 
 }
-.container .card-edit-profile .content-edit-profile{
 
-    transform: translateY(0px);
-    opacity: 1;
-}
 
 .container .card-edit-profile .content-edit-profile h2{
     
@@ -50,6 +44,10 @@
     font-weight: 500;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
+}
+.editfav{
+    display: flex;
+    justify-content: space-between;
 }
 
 /* profile stley */
