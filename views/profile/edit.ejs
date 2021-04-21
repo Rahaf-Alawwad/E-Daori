@@ -7,7 +7,7 @@
 <div class="card-edit-profile">
     <div class="content-edit-profile">
 
-        <form action="/profile/edit" method= "POST" class="form">
+        <form action="/profile/edit" method= "POST" class="form" enctype="multipart/form-data" >
             <h2> Edit Your account</h2>
             <br>
         <input type="text" name="name" class="form__input__text" placeholder="Enter your name" value="<%= result.name %>">
@@ -16,7 +16,7 @@
         <a href="/edit/Password"> Edit password</a>
         <br>
 
-        <input id ="profileImage" name ="image" type="file" class="form__input__text" >
+        <input id ="profileImage" name="image" type="file" class="form__input__text" >
         <br>
 
         <% result.favoriteTeams.forEach(team => { %>

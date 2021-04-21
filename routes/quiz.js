@@ -11,11 +11,7 @@ for(let i=0; i<10;i++){quizzQuestions.push(i)}
 shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
 quizzQuestions =[...shuffledQuestions]
 
-router.get("/quiz", (req,res)=>{
-    
 
-     res.redirect("/quiz/index");
-})
 router.get("/quiz/index", (req, res) => {
 
     currentQuestion = shuffledQuestions.pop()

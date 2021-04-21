@@ -1,0 +1,15 @@
+<form action="/admin/edit?id=<%= question.id %>" method= "POST" class="form" >
+    <h2> edit question</h2>
+    <br>
+<input type="text" name="question" value="<%= question.question %>" class="form__input__text" placeholder="Enter question">
+<br>
+<input type="text" name="choose1" value="<%= question.choose1 %>" class="form__input__text" placeholder="Enter answer1">
+<br>
+<input type="text" name ="choose2" value="<%= question.choose2 %>" class="form__input__text"  placeholder="Enter answer2">
+<br>
+<input type="text" name="correct" value="<%=question.correct%>" class="form__input__text" placeholder="Enter answer3">
+    
+ <br>
+
+<input type="submit" value="Update" class="form__input__submit">
+</form>
