@@ -1,6 +1,6 @@
 .container .card-team-details, .card-team-details-table{
     position: relative;
-    width: 1500px;
+    width: 1000px;
     height:100%;
     margin: 30px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
@@ -17,9 +17,8 @@
 }
 
 .card-team-details-table{
-    background: rgba(0, 0, 0, 0.411);;
-    width:350px;
-    font-size: 10px;
+    right:3%;
+    width: 100%;
 
 }
 
@@ -31,7 +30,7 @@
 
 .content-team-details{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 
@@ -62,7 +61,7 @@ flex-grow: 1;
 
 
 .container .card-team-details .content-team-details  img{
-    width: 100%;
+    width: 90%;
     border-radius: 50%;
     
 
@@ -78,13 +77,9 @@ flex-grow: 1;
 }
 
 .row1{
-    position: fixed;
     align-items: center;
     display: flex;
     flex-direction: row;
-    left:10%;
-    top:40%;
-  
 
 
 }
@@ -95,17 +90,12 @@ flex-grow: 1;
     margin: 0 auto;
 }
 .player-details-table {
-    width:70%;
-   
-}
-
-.row2 .player-details-table{
-    margin-left:25%;
+    width:100%
 }
 .player-details-table span{
     color:grey;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 td, th{
