@@ -30,7 +30,7 @@ router.get("/quiz/index", (req, res) => {
 
 router.post("/quiz/index", (req, res) => {
 
-    if( req.body.choice == quizzes[quizzQuestions[shuffledQuestions.length]].correct){
+    if( req.body.choice == quizzes[quizzQuestions[shuffledQuestions.length]].correct &&shuffledQuestions.length >0){
         score++
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
