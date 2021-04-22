@@ -48,3 +48,6 @@
     display: flex;
     justify-content: space-between;
 }
+.content-quiz h1{
+    font-size: 50px;
+}
