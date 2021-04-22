@@ -10,12 +10,8 @@ const User = require('../models/User');
 const isLoggedIn = require("../helper/isLoggedIn");
 
 
-<<<<<<< HEAD
-/* router.get("/team/details/:teamID", (req,res)=>{
-=======
 /* router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
 
->>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
     const options = {
         method: 'GET',
         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -25,12 +21,8 @@ const isLoggedIn = require("../helper/isLoggedIn");
           'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
         }
       };
-<<<<<<< HEAD
-// router.get("/team/details/:teamID", (req,res)=>{
-=======
 // router.get("/team/details/:teamID",isLoggedIn, (req,res)=>{
 
->>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
 //     const options = {
 //         method: 'GET',
 //         url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
@@ -58,13 +50,9 @@ router.get("/team/details/:matchID",isLoggedIn, (req,res)=>{
 //           console.error(error);
 //       });
 // })
-<<<<<<< HEAD
-// router.get("/team/details/", (req,res)=>{
-=======
 
 // router.get("/team/details/",isLoggedIn, (req,res)=>{
 
->>>>>>> bc97f97cd3fec4a60439f816c7883c0b657772bc
 //     const options = {
 //         method: 'GET',
 //         url: 'http://www.json-generator.com/api/json/get/cpOuuObTKG?indent=2'};
