@@ -182,7 +182,7 @@ body::after{
           
          
         <div class="form_conianer">
-            <form  id ="voteChoice" action="/vote/<%= response.response[0].fixture.id %>" method="POST" class="form">
+            <form  id ="voteChoice" action="/match/vote?matchID=<%= response.response[0].fixture.id %>" method="POST" class="form">
            
               <h4>Who will win</h4>
             

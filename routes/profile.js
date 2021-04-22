@@ -49,7 +49,7 @@ var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
 
 
-router.get("/profile/auth",(req, res) => {
+router.get("/profile/auth",isAdmin,(req, res) => {
     res.redirect("/profile");
 
 })

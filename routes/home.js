@@ -10,16 +10,14 @@ const axios = require("axios");
 const isLoggedIn = require("../helper/isLoggedIn");
 const { render } = require('ejs');
 
-function getDate(currentDate, addDays) {
+function getDate(currentDate, addDays) { 
   let year = currentDate.getFullYear()
   let month = parseInt(currentDate.getMonth()) + 1 < 10 ? "0" + (parseInt(currentDate.getMonth()) + 1) : parseInt(currentDate.getMonth()) + 1
   let day = parseInt(currentDate.getDate()) + addDays < 10 ? "0" + (parseInt(currentDate.getDate()) + addDays) : parseInt(currentDate.getDate()) + addDays
   return (year + "-" + month + "-" + day)
 }
 
-router.get("/test/button",(req,res)=>{
-  res.render("test")
-})
+
 router.get("/home/current", (req, res) => {
   //let currrentDate = getDate(new Date(),0)
   // const options = {
@@ -266,10 +264,10 @@ router.get('/favoriteteams', (req, res) => {
   axios.request(options).then(function (response) {
 
     User.findById(req.user.id).then(result => {
-      result.favoriteTeams.forEach(id => {
+      result.favoriteTeams.forEach(team => {
         response.data.response.forEach(match => {
 
-          if (match.teams.home.id == id || match.teams.away.id == id) {
+          if (match.teams.home.name == team.name || match.teams.away.name == team.name) {
             favTeam.push(match);
           }
 

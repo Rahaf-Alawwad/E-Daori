@@ -1,8 +1,10 @@
 require('dotenv').config();
 
 const express = require("express");
+var methodOverride = require('method-override')
 const app = express();
 const PORT = process.env.PORT || 4000;
+
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 // var vanilla =require('vanilla-tilt');
@@ -21,6 +23,7 @@ mongoose.connect(
   );
 app.set("view engine", "ejs");
 app.use(expresslayouts);
+app.use(methodOverride('_method'))
 // app.use(vanilla);
 
 //app.use(express.static(DOCUMENT_ROOT));
