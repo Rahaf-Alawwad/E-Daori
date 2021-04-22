@@ -1,6 +1,7 @@
 <%- include('../partials/home.ejs'); %>
 
 <!-- begin -->
+<div class="home-container">
   <% for (let index = response.response.length-1; index >= 0; index--) {%> 
 
     <% const element = response.response[index];%> 
@@ -17,16 +18,20 @@
       </div>
 <div class="under-img">
   <div class="Row-name-under-img">
-    <div class="card-body"> 
-      <div class="card-title"> <a href="/team/details?teamID=<%=element.teams.home.id %>"><%= element.teams.home.name %></a><a href="/team/details?teamID=<%= element.teams.away.id %>"><%= element.teams.away.name %></a></div>
-    </div>
+    
+      <div > 
+        <a class="team-name"  href="/team/details?teamID=<%=element.teams.home.id %>"><%= element.teams.home.name %></a>    
+          
+        <a class="team-name"   href="/team/details?teamID=<%= element.teams.away.id %>"><%= element.teams.away.name %></a>
+      </div>
 
 
   </div>
-  <div class="info">
-    <p class="card-text"><%= element.score.fulltime.home %> &nbsp - &nbsp <%= element.score.fulltime.away %></p>
+  <p class="card-text"><%= element.score.fulltime.home %> &nbsp - &nbsp <%= element.score.fulltime.away %></p>
+
+  <div class="info" data-tilt>
       
-    <h4  >Time:<%=new Date(response.response[0].fixture.date).toString().substring(0, 21)%>  </h4 >
+    <h4  ><%=new Date(response.response[0].fixture.date).toString().substring(0, 21)%>  </h4 >
     <h4  >Referee:<%= element.fixture.referee %>  </h4 >
     <h4  ><%= element.fixture.venue.city %> <%= element.fixture.venue.name %></h4 >
  
@@ -54,5 +59,7 @@
 
   <% }%>
 
+</div>
+ 
  
   <!-- end -->

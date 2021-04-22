@@ -71,7 +71,7 @@ body::after{
 .container .card{
     position: relative;
     width: 330px;
-    height: 480px;
+    height: 500px;
     margin: 30px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -96,7 +96,20 @@ body::after{
 }
 .container .card .content img{
     opacity:1;
-    transform: translateY(240px);
+    transform: translateY(190px);
+    transition: 0.5s;
+    height: 120px;
+    width: 120px;
+
+}
+
+.container .card:hover .content img{
+    opacity:1;
+    transform: translateY(20px);
+    transition: 0.5s;
+    height: 80px;
+    width: 80px;
+
 }
 
 .container .card:hover .content .under-img{
@@ -131,7 +144,7 @@ body::after{
 
 .Row-name-under-img{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     margin-bottom:10px ;
@@ -152,11 +165,11 @@ body::after{
     z-index: 1;
 }
 
-.container .card .content a{
+.container .card .content .team-name {
    
     position: relative;
     display: inline-block;
-    padding: 8px 20px;
+    padding: 8px 10px;
     margin-top: 15px;
     background: white;
     color: black;
@@ -167,48 +180,43 @@ body::after{
 
 }
 
-.dropdown {
-    float: left;
-    overflow: hidden;
-  }
+
+ 
+ 
+ 
+
   
-  .dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    position: relative;
+    width: 300px;
+      height: 250px;
+      box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      
+      padding: 20px;
   
-  .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: white;
-  }
+      border-top:1px solid rgba(255, 255, 255, 0.5) ;
+      border-left:1px solid rgba(255, 255, 255, 0.5) ;
   
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  .home-container{
+    margin-top:10%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     z-index: 1;
   }
-  
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
+
+
+  #main-nav{
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
   }
