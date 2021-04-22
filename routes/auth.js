@@ -67,8 +67,7 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
   newUser.save().then(user=>{
       res.redirect("/auth/signin");
   }).catch(err=>{
-      console.log(err);
-  })
+res.redirect("/auth/signin");  })
   });
 
 router.get('/auth/signin', (req, res) => {
