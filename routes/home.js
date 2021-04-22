@@ -25,7 +25,7 @@ router.get("/home/current", (req, res) => {
   //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
   //   params: {date: currrentDate,  league: '307',  season: '2020'},
   //   headers: {
-  //     'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+  //     'x-rapidapi-key': process.env.APIKey,
   //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
   //   }
   // };
@@ -56,7 +56,7 @@ router.get("/home/last", (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', from: fromDate, to: toDate},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -83,7 +83,7 @@ router.get("/home/next", (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', from: fromDate, to: toDate},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -107,7 +107,7 @@ router.get('/home/previous', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: { league: '307', season: '2020', status: 'FT' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -126,7 +126,7 @@ router.get('/home/upcoming', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: { league: '307', season: '2020', status: 'NS' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -185,7 +185,7 @@ router.post("/search", isLoggedIn, (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
     params: { name: req.body.search },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -215,7 +215,7 @@ router.get('/favoriteteams', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', status: 'NS'},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
