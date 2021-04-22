@@ -213,6 +213,19 @@ margin: 10px;
     pointer-events: none;
 }
 
+.SaveChanges{
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    margin-top: 15px;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+}
 
 .container .card-Change-password .content-Change-password a{
    
