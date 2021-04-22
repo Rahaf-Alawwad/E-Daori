@@ -76,11 +76,11 @@ let teamOne=0,teamTwo=0,tie=0;
           })
 
            arr=[
-            (Math.round(((teamOne/match.votes.length)*100))+"%"),
-            (Math.round(((teamTwo/match.votes.length)*100))+"%"),
-            (Math.round(((tie/match.votes.length)*100))+"%")
+            (Math.round(((teamOne/match.votes.length)*100))),
+            (Math.round(((teamTwo/match.votes.length)*100))),
+            (Math.round(((tie/match.votes.length)*100)))
           ]
-          
+          console.log(arr);
           res.render("match/detailsAfterVote", { response: response.data, votedCount: arr});
           
         }
