@@ -11,7 +11,7 @@ const path = require('path');
 const fs = require('fs');
 
 const isLoggedIn = require("../helper/isLoggedIn");
-const isNotAdmin = require("../helper/isNotAdmin");
+const isAdmin = require("../helper/isAdmin");
 
 
 const storage = multer.diskStorage({
@@ -49,7 +49,7 @@ var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
 
 
-router.get("/profile/auth", isNotAdmin,(req, res) => {
+router.get("/profile/auth",isAdmin,(req, res) => {
     res.redirect("/profile");
 
 })
