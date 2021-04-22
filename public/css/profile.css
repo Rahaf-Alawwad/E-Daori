@@ -228,3 +228,18 @@ margin: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
 }
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+.navbar *{
+    display: flex;
+    flex-grow: 1;
+    padding-top: 0;
+    justify-content: space-evenly;
+
+}

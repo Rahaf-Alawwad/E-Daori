@@ -59,28 +59,17 @@ router.get("/profile",isLoggedIn,(req, res) => {
 
     User.findById(req.user.id).then(result => {
         result.voteMatchs.forEach(element => {
-            console.log('==================');
-            console.log(element.match);
-            console.log('==================');
-
+     
             Match.findById(element.match).then(mymatch=>{
-                console.log('mymatch');
-
-                console.log(mymatch.teamTwo);
-                console.log('mymatch');
                
                 temp=[{teamOne:mymatch.teamOne,teamTwo:mymatch.teamTwo,vote:element.vote}]
-                console.log('temp');
-                console.log(temp);
-                console.log('temp');
                 myvotes.push(temp)
-            }).catch(err=>console.log(err) )
+            }).catch(err=> console.log(err) )
         });
-        console.log(myvotes);
+     
         res.render("profile/index", { result ,myvotes});
     }).catch(err => {
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
 })
 
 router.get("/profile/edit", isLoggedIn, (req, res) => {
@@ -88,8 +77,7 @@ router.get("/profile/edit", isLoggedIn, (req, res) => {
     User.findById(req.user.id).then(result => {
         res.render("profile/edit", { result });
     }).catch(err => {
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
 })
 
 
@@ -105,14 +93,12 @@ userupdate.image= "images/user/"+req.file.filename;
             res.redirect('/profile');
         })
         .catch(err => {
-            console.log(err);
-        })
+      res.redirect("/auth/signin");        })
        
        
         
     }).catch(err => {
-        console.log(err);
-    });
+  res.redirect("/auth/signin");    });
 })
 
 
@@ -139,8 +125,7 @@ router.post("/edit/Password", isLoggedIn,(req, res) => {
 
 
             }).catch(err => {
-                console.log(err);
-
+          res.redirect("/auth/signin");
             });
         } else {
             console.log("password mismatch")
@@ -161,8 +146,7 @@ router.delete("/profile/edit/delete", isLoggedIn,(req, res) => {
                 res.redirect("/profile/edit")
         })
         .catch (err => {
-        console.log(err)
-})
+  res.redirect("/auth/signin");})
 })
 
 router.get("/profile/delete", isLoggedIn,(req,res)=>{
