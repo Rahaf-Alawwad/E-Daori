@@ -16,15 +16,6 @@ const isLoggedIn = require("../helper/isLoggedIn");
  /*
 router.get('/match/details',isLoggedIn, (req, res) => {
  
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {id: req.params.id},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
   
   axios.request(options).then(response => {
     console.log(response.data);
@@ -46,15 +37,24 @@ let flag = true;
 let arr;
 let teamOne=0,teamTwo=0,tie=0;
 
+  // const options = {
+  //   method: 'GET',
+  //   url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
+  // };
+
+  
   const options = {
     method: 'GET',
-    url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
+    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+    params: {id: req.query.matchID},
+    headers: {
+      'x-rapidapi-key': process.env.APIKey,
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    }
   };
 
   axios.request(options).then(function (response) {
-    console.log("match id here"+ req.query.matchID);
-    console.log("user id"+ req.user.id);
-  
+    
     User.findById(req.user.id).then(user=>{
       Match.findOne({fixtureID:req.query.matchID}).then(match=>{
         console.log("MATCH "+match);
@@ -91,8 +91,7 @@ let teamOne=0,teamTwo=0,tie=0;
           res.render("match/details", { response: response.data});
         }
       }).catch(err =>{
-        console.log(err)
-      })
+  res.redirect("/auth/signin");      })
     })
   .catch(err =>{
     console.log(err)
@@ -115,15 +114,12 @@ router.post("/match/vote", isLoggedIn,(req, res) => {
             res.redirect("/match/details?matchID="+req.query.matchID)
           })
             .catch(err => {
-              console.log(err);
-            })
+        res.redirect("/auth/signin");            })
             .catch(err => {
-              console.log(err);
-            })
+        res.redirect("/auth/signin");            })
 
         }).catch(err => {
-          console.log(err);
-        })
+    res.redirect("/auth/signin");        })
 
     })
   

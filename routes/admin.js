@@ -30,15 +30,9 @@ router.get("/admin/match",isAdmin, (req,res)=>{
             newMatch.save().then(user=>{
                 res.send("")
             }).catch(err=>{
-                console.log(err);
-            })
-            
-            
+          res.redirect("/auth/signin");            }) 
         });      
-    
     });
-
-
 })
 
 // show all element
@@ -46,8 +40,7 @@ router.get("/admin/match",isAdmin, (req,res)=>{
     Quizzes.find().then(result =>{
         res.render("admin/index",{question :result})
     }).catch(err =>{
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
    })
    // open add page
    router.get("/admin/add",isAdmin, (req, res) => {
@@ -61,8 +54,7 @@ router.get("/admin/match",isAdmin, (req,res)=>{
          res.redirect('/admin/index')
      })
      .catch(err =>{
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
     
   })
   
@@ -72,22 +64,18 @@ router.get("/admin/match",isAdmin, (req,res)=>{
 //     res.render("home/vote")
 //   })
 router.get("/admin/edit",isAdmin, (req, res) => {
-
-    
-    Quizzes.findById(req.query.id).then(result =>{
+  Quizzes.findById(req.query.id).then(result =>{
         console.log(result);
         res.render("admin/edit",{question :result})
     }).catch(err =>{
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
  })
  
  router.post("/admin/edit", isAdmin,(req,res)=>{
     Quizzes.findByIdAndUpdate(req.query.id,req.body).then(()=>{
         res.redirect('/admin/index')
     }).catch(err =>{
-        console.log(err);
-    })
+  res.redirect("/auth/signin");    })
 })
   
  
@@ -97,8 +85,7 @@ router.post("/admin/delete", isAdmin,(req, res) => {
                 res.redirect("/admin/index")
         })
         .catch (err => {
-        console.log(err)
-})
+  res.redirect("/auth/signin");})
 })
 
 module.exports = router;

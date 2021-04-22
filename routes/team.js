@@ -13,22 +13,39 @@ const isLoggedIn = require("../helper/isLoggedIn");
 // display detalis and check favo
 router.get("/team/details",isLoggedIn, (req, res) => {
   let flag = true
-  console.log('req.query.teamID')
 
-  console.log(req.query.teamID)
+  // const options = {
+  //   method: 'GET',
+  //   url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'
+  // };
+
   const options = {
     method: 'GET',
-    url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'
+    url: 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics',
+    params: {league: '307', season: '2020', team: req.query.teamID},
+    headers: {
+      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    }
   };
-
   axios.request(options).then(function (team) {
     // res.render("team/details" , {team : team.data });
 
 
+    // const options2 = {
+    //   method: 'GET',
+    //   url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'
+    // };
     const options2 = {
       method: 'GET',
-      url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'
+      url: 'https://api-football-v1.p.rapidapi.com/v3/players',
+      params: {team: req.query.teamID, league: '307', season: '2020'},
+      headers: {
+        'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+      }
     };
+    
 
     axios.request(options2).then(function (player) {
 
@@ -71,8 +88,7 @@ router.post("/team/favorite",isLoggedIn, (req, res) => {
       /* res.render('team/favoDetails', {response : response.data}) */
     })
     .catch(err => {
-      console.log(err);
-    })
+res.redirect("/auth/signin");    })
 })
 
 
