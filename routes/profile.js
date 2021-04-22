@@ -85,15 +85,15 @@ router.post("/profile/edit", isLoggedIn,upload.single("image"),(req, res) => {
 let userupdate= new User(req.body)
 console.log(req.body);
 console.log(req.file);
-userupdate.image= "images/user/"+req.file.filename;
+// userupdate.image= "images/user/"+req.file.filename;
 
     User.findByIdAndUpdate(req.user.id, req.body).then(result => {
-        result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
+        // result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
             //result.image= "images/user/"+req.file.filename;
             res.redirect('/profile');
-        })
-        .catch(err => {
-      res.redirect("/auth/signin");        })
+    //     })
+    //     .catch(err => {
+    //   res.redirect("/auth/signin");        })
        
        
         
