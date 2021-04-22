@@ -1,13 +1,12 @@
 module.exports = (req, res, next) => {
-    if(req.user.id == "60808ba0e44eaf6efc4545e8")
+    if(req.user.id == process.env.ADMIN)
     {
-        console.log("here")
-        res.redirect('/admin/index'); 
+        next(); 
        
     }
     else{
-        console.log("there")
-        next();
+        res.redirect('/profile'); 
+     
        
     }
 }

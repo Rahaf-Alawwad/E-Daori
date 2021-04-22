@@ -50,7 +50,7 @@ router.use(methodOverride('_method'))
 
 
 router.get("/profile/auth",isAdmin,(req, res) => {
-    res.redirect("/profile");
+    res.redirect("/admin/index");
 
 })
 
