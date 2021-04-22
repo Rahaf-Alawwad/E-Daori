@@ -114,8 +114,6 @@ router.get("/team/details",isLoggedIn, (req, res) => {
     console.error(error);
   });
 
-
-
 })
 
 
