@@ -14,6 +14,8 @@ quizzQuestions =[...shuffledQuestions]
 
 router.get("/quiz/index", isLoggedIn,(req, res) => {
 
+
+
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
     choices = [quizzes[currentQuestion].choose1, quizzes[currentQuestion].choose2, quizzes[currentQuestion].correct]
