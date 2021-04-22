@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-const isNotAdmin = require("../helper/isNotAdmin");
+const isAdmin = require("../helper/isAdmin");
 let passport = require("../helper/ppConfig")
 
 const User = require("../models/User");
@@ -58,8 +58,8 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
 
   let hash = bcrypt.hashSync(req.body.password, salt);
   newUser.password = hash;
-  if(req.file.filename == null || req.file.filename == undefined || req.file.filename == ""){
-    newUser.image = "images/user/default_img.png";
+  if(req.file == null || req.file == undefined || req.file == ""){
+    newUser.image = "images/user/default.jpg";
   }else{
     newUser.image = "images/user/"+req.file.filename;
   }
@@ -68,8 +68,7 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
   newUser.save().then(user=>{
       res.redirect("/auth/signin");
   }).catch(err=>{
-      console.log(err);
-  })
+res.redirect("/auth/signin");  })
   });
 
 router.get('/auth/signin', (req, res) => {

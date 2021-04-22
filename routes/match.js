@@ -13,17 +13,9 @@ const isLoggedIn = require("../helper/isLoggedIn");
 
 // HTTP GET - display details a specific match by id
 // for prodaction
+ /*
 router.get('/match/details',isLoggedIn, (req, res) => {
-  /*
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {id: req.params.id},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
+ 
   
   axios.request(options).then(response => {
     console.log(response.data);
@@ -31,30 +23,41 @@ router.get('/match/details',isLoggedIn, (req, res) => {
     res.render("match/details" , {response : response.data}); 
   }).catch(error=> {
     console.error(error);
-  });*/
-
-  res.redirect("/test/match/details")
+  });
+  
+  res.redirect("/testing/match/details")
 });
+*/
 
-// only for test
-router.get('/testing/match/details', (req, res) => {
+// ###############################only for test
+// ###############################only for test
+router.get('/match/details', (req, res) => {
 
 let flag = true;
 let arr;
 let teamOne=0,teamTwo=0,tie=0;
 
+  // const options = {
+  //   method: 'GET',
+  //   url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
+  // };
+
+  
   const options = {
     method: 'GET',
-    url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
+    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+    params: {id: req.query.matchID},
+    headers: {
+      'x-rapidapi-key': process.env.APIKey,
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    }
   };
 
   axios.request(options).then(function (response) {
-    console.log("match id"+ req.query.id);
-    console.log("user id"+ req.user.id);
-  
+    
     User.findById(req.user.id).then(user=>{
-      Match.findOne({fixtureID:req.query.id}).then(match=>{
-        console.log(match);
+      Match.findOne({fixtureID:req.query.matchID}).then(match=>{
+        console.log("MATCH "+match);
         user.voteMatchs.forEach(elem=>{
         console.log(elem.match+" === "+match.id);
         if(flag && elem.match == match.id){
@@ -73,22 +76,22 @@ let teamOne=0,teamTwo=0,tie=0;
           })
 
            arr=[
-            (Math.round(((teamOne/match.votes.length)*100))+"%"),
-            (Math.round(((teamTwo/match.votes.length)*100))+"%"),
-            (Math.round(((tie/match.votes.length)*100))+"%")
+            (Math.round(((teamOne/match.votes.length)*100))),
+            (Math.round(((teamTwo/match.votes.length)*100))),
+            (Math.round(((tie/match.votes.length)*100)))
           ]
-          
+          console.log(arr);
           res.render("match/detailsAfterVote", { response: response.data, votedCount: arr});
           
         }
   
         })
         if (flag){
+
           res.render("match/details", { response: response.data});
         }
       }).catch(err =>{
-        console.log(err)
-      })
+  res.redirect("/auth/signin");      })
     })
   .catch(err =>{
     console.log(err)
@@ -99,66 +102,27 @@ let teamOne=0,teamTwo=0,tie=0;
   });
 }) 
 
-router.post("/vote/:matchID", isLoggedIn,(req, res) => {
+router.post("/match/vote", isLoggedIn,(req, res) => {
 
   User.findById(req.user.id)
     .then(user => {
-
-      Match.findOneAndUpdate({ fixtureID: req.params.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
+    
+      Match.findOneAndUpdate({ fixtureID: req.query.matchID }, { $push: { votes: [{ user: user, vote: req.body.vote }] } })
         .then(update => {
-         
-
           User.findByIdAndUpdate(req.user.id, { $push: { voteMatchs: [{ match: update, vote: req.body.vote }] } })
           .then(result => {
-            console.log(result);
-            res.redirect("/vote/"+req.params.matchID);
+            res.redirect("/match/details?matchID="+req.query.matchID)
           })
             .catch(err => {
-              console.log(err);
-            })
+        res.redirect("/auth/signin");            })
             .catch(err => {
-              console.log(err);
-            })
+        res.redirect("/auth/signin");            })
 
         }).catch(err => {
-          console.log(err);
-        })
+    res.redirect("/auth/signin");        })
 
     })
   
-  })
-
-  router.get("/vote/:matchID",isLoggedIn, (req, res) => {
-   
-   
-    Match.findOne({ fixtureID: req.params.id })
-    .then(match => {
-      let teamOne=0,teamTwo=0,tie=0;
-
-      match.votes.forEach(eleme =>{ //localeCompare
-        if(eleme.vote === "tie"){
-        tie++
-        }
-        else if(eleme.vote === "teamOne"){
-          teamOne++
-        }
-        else{
-          teamTwo++
-        }
-      })
-      console.log(`teamOne: ${Math.round(((teamOne/match.votes.length)*100))}% ! teamTwo: ${Math.round(((teamTwo/match.votes.length)*100))}% ! tie: ${Math.round(((tie/match.votes.length)*100))}%`);
-  
-
-      let arr=[
-        Math.round(((teamOne/match.votes.length)*100)),
-        Math.round(((teamTwo/match.votes.length)*100)),
-        Math.round(((tie/match.votes.length)*100))
-      ]
-      res.redirect('/test/match/details/'+arr) 
-    })
-    .catch(err => {
-      console.log(err);
-    })
   })
 
   module.exports = router;
