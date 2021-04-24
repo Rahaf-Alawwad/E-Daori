@@ -25,9 +25,9 @@ router.get("/qizes/requst",(req, res) => {
 router.get("/quiz/index", isLoggedIn,(req, res) => {
     quizzes = Quizzes.find()
     .then(courses => {
-    console.log("============================")
+
     quizzes=courses
-    console.log("============================")
+
     quizzQuestions = []
     shuffledQuestions  = []
     score=0

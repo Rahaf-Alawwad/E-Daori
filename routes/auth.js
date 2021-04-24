@@ -76,7 +76,7 @@ router.get('/auth/signin', (req, res) => {
 
 router.post("/auth/signin",
     passport.authenticate("local", {
-      successRedirect: "/quiz/index",
+      successRedirect: "/home/current",
       failureRedirect: "/auth/signin"
     })
   );
