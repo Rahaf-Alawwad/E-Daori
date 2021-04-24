@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require("axios");
-let quizzes = require("../public/quiz.json")
+//let quizzes = require("../public/quiz.json")
 let Quizzes = require("../models/Quizzes")
 
 
@@ -10,10 +10,7 @@ const isLoggedIn = require("../helper/isLoggedIn");
 
 let quizzQuestions = []
 let shuffledQuestions  = []
-let score=0
- for(let i=0; i<10;i++){quizzQuestions.push(i)}
- shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
- quizzQuestions =[...shuffledQuestions]
+let score
 
 /* 
 router.get("/qizes/requst",(req, res) => {
@@ -26,6 +23,17 @@ router.get("/qizes/requst",(req, res) => {
 
 
 router.get("/quiz/index", isLoggedIn,(req, res) => {
+    quizzes = Quizzes.find()
+    .then(courses => {
+    console.log("============================")
+    quizzes=courses
+    console.log("============================")
+    quizzQuestions = []
+    shuffledQuestions  = []
+    score=0
+    for(let i=0; i<10;i++){quizzQuestions.push(i)}
+    shuffledQuestions = quizzQuestions.sort(() => Math.random() - 0.5)
+    quizzQuestions =[...shuffledQuestions]
 
     currentQuestion = shuffledQuestions.pop()
     question = quizzes[currentQuestion].question
@@ -33,7 +41,10 @@ router.get("/quiz/index", isLoggedIn,(req, res) => {
     shuffled = choices.sort(() => Math.random() - 0.5)
     
    
-    res.render("quiz/index", { question, shuffled });
+    res.render("quiz/index", { question, shuffled });})
+    .catch(err =>
+    res.redirect("/auth/signin"))
+
 
 })
 
