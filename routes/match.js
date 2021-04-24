@@ -57,9 +57,9 @@ let teamOne=0,teamTwo=0,tie=0;
     
     User.findById(req.user.id).then(user=>{
       Match.findOne({fixtureID:req.query.matchID}).then(match=>{
-        console.log("MATCH "+match);
+        
         user.voteMatchs.forEach(elem=>{
-        console.log(elem.match+" === "+match.id);
+        
         if(flag && elem.match == match.id){
           flag = false;
 
