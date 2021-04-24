@@ -58,3 +58,5 @@
 # Future Work For The Maze
 <li> News section</li>
 <li> Email notification</li>
+<li> Forget password</li>
+<li> Top Scores</li>

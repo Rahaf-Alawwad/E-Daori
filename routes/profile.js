@@ -82,6 +82,7 @@ let userupdate= new User(req.body)
 
   console.log("req"+req.body)
     User.findByIdAndUpdate(req.user.id, req.body).then(result => {
+
       if(req.file != null && req.file != undefined && req.file == ""){
       userupdate.image= "images/user/"+req.file.filename;
         result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
@@ -93,6 +94,7 @@ let userupdate= new User(req.body)
         .catch(err => {
       res.redirect("/auth/signin");        })
     }else{ res.redirect('/profile');}
+
        
         
     }).catch(err => {
