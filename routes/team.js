@@ -77,9 +77,6 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
-  console.log("==============");
-  console.log(req.body.teamName)
-  console.log("==============");
 
   User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
     .then(user => {

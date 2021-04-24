@@ -139,7 +139,7 @@
 						</tr>
 					</table>
 				</div>
-				<form  id ="voteChoice" action="favorite?teamID=<%= team.response.team.id%>" method="POST" class="form">
+				<form  id ="voteChoice" action="/team/favorite?teamID=<%= team.response.team.id%>" method="POST" class="form">
 				
 				<input hidden="hidden" name="img" type="text" value=" <%= team.response.team.logo%>">
 				<input hidden="hidden" name="teamName" type="text" value="<%= team.response.team.name%>">
