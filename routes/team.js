@@ -24,7 +24,7 @@ router.get("/team/details",isLoggedIn, (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics',
     params: {league: '307', season: '2020', team: req.query.teamID},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -41,7 +41,7 @@ router.get("/team/details",isLoggedIn, (req, res) => {
       url: 'https://api-football-v1.p.rapidapi.com/v3/players',
       params: {team: req.query.teamID, league: '307', season: '2020'},
       headers: {
-        'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+        'x-rapidapi-key': process.env.APIKey,
         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
       }
     };
@@ -77,9 +77,6 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
-  console.log("==============");
-  console.log(req.body.teamName)
-  console.log("==============");
 
   User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
     .then(user => {
@@ -129,7 +126,7 @@ router.get("/team/statstics",isLoggedIn, (req, res) => {
   //     url: 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics',
   //     params: {league: '307', season: '2020', team: '2939'},
   //     headers: {
-  //       'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+  //       'x-rapidapi-key': process.env.APIKey,
   //       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
   //     }
   //   };
@@ -159,7 +156,7 @@ router.get("/player/trophies",isLoggedIn, (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/trophies',
     params: { player: '276' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -182,7 +179,7 @@ router.get("/top/scorers",isLoggedIn, (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/players/topscorers',
     params: { league: '307', season: '2020' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };

@@ -34,10 +34,10 @@
   "_id": {
     "$oid": "607a007df0fdd9bf70464f07"
   },
-  "choose1": "",
-  "choose2": "",
-  "correct": "تنصيف الفرق المشاركه الى درجة ممتازة و درجة أولى ",
-  "question": "Why is the league called this name?"
+  "choose1": " 31 Rounds",
+  "choose2": " 35 Rounds ",
+  "correct": " 30 Rounds ",
+  "question": "How many rounds in the Sauid league?"
 },{
   "_id": {
     "$oid": "607a0248f0fdd9bf70464f08"

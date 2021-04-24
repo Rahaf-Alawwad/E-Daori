@@ -19,27 +19,32 @@ function getDate(currentDate, addDays) {
 
 // get matches for today
 router.get("/home/current", (req, res) => {
-  // let currrentDate = getDate(new Date(),0)
-  // const options = {
-  //   method: 'GET',
-  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-  //   params: {date: currrentDate,  league: '307',  season: '2020'},
-  //   headers: {
-  //     'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
-  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-  //   }
-  // };
-
+  let currrentDate = getDate(new Date(),0)
   const options = {
     method: 'GET',
-    url: 'http://www.json-generator.com/api/json/get/coDSWWSOmq?indent=2',
+    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+    params: {date: currrentDate,  league: '307',  season: '2020'},
+    headers: {
+      'x-rapidapi-key': process.env.APIKey,
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    }
   };
 
-  axios.request(options).then(function (response) {
+  // const options = {
+  //   method: 'GET',
+  //   url: 'http://www.json-generator.com/api/json/get/coDSWWSOmq?indent=2',
+  // };
 
-    res.render("home/home", { response: response.data });
+  axios.request(options).then(function (response) {
+ 
+    if(response.data.response== null || response.data.response == undefined || response.data.response == ""){
+
+      res.redirect("/home/none");
+    }
+    else{
+    res.render("home/home", { response: response.data });}
   }).catch(function (error) {
-    console.error(error);
+    res.render("auth/signin")
   });
 })
 
@@ -56,7 +61,7 @@ router.get("/home/last", (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', from: fromDate, to: toDate},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -68,7 +73,12 @@ router.get("/home/last", (req, res) => {
 
   axios.request(options).then(function (response) {
 
-    res.render("home/home", { response: response.data });
+    if(response.data.response== null || response.data.response == undefined || response.data.response == ""){
+
+      res.redirect("/home/none");
+    }
+    else{
+    res.render("home/home", { response: response.data });}
   }).catch(function (error) {
     console.error(error);
   });
@@ -83,7 +93,7 @@ router.get("/home/next", (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', from: fromDate, to: toDate},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -95,7 +105,12 @@ router.get("/home/next", (req, res) => {
 
 
   axios.request(options).then(function (response) {
-    res.render("home/home", { response: response.data });
+    if(response.data.response== null || response.data.response == undefined || response.data.response == ""){
+
+      res.redirect("/home/none");
+    }
+    else{
+    res.render("home/home", { response: response.data });}
   }).catch(function (error) {
     console.error(error);
   });
@@ -107,13 +122,18 @@ router.get('/home/previous', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: { league: '307', season: '2020', status: 'FT' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/home", { response: response.data });
+    if(response.data.response== null || response.data.response == undefined || response.data.response == ""){
+
+      res.redirect("/home/none");
+    }
+    else{
+    res.render("home/home", { response: response.data });}
   }).catch(function (error) {
     console.error(error);
   });
@@ -126,13 +146,18 @@ router.get('/home/upcoming', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: { league: '307', season: '2020', status: 'NS' },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
 
   axios.request(options).then(function (response) {
-    res.render("home/home", { response: response.data });
+    if(response.data.response== null || response.data.response == undefined || response.data.response == ""){
+
+      res.redirect("/home/none");
+    }
+    else{
+    res.render("home/home", { response: response.data });}
   }).catch(function (error) {
     console.error(error);
   });
@@ -185,7 +210,7 @@ router.post("/search", isLoggedIn, (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/teams',
     params: { name: req.body.search },
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -215,7 +240,7 @@ router.get('/favoriteteams', (req, res) => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
     params: {league: '307', season: '2020', status: 'NS'},
     headers: {
-      'x-rapidapi-key': '4841aa3b86msha792848b61a8cefp19f1b8jsn6ab83c1bc281',
+      'x-rapidapi-key': process.env.APIKey,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
     }
   };
@@ -233,7 +258,13 @@ router.get('/favoriteteams', (req, res) => {
 
         })
       });
-      res.render("home/favoriteTeam", { response: favTeam })
+      if(favTeam.length ==0){
+
+        res.redirect("/home/none");
+      }
+      else{
+        res.render("home/favoriteTeam", { response: favTeam })
+      }
     }).catch(err => console.log(err))
 
 
@@ -243,7 +274,9 @@ router.get('/favoriteteams', (req, res) => {
 
 })
 
-
+router.get("/home/none", (req,res)=>{
+  res.render("home/noMatch");
+})
 
 
 
