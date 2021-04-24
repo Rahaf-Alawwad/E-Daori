@@ -51,7 +51,7 @@ router.post("/quiz/index", (req, res) => {
     }
 
     else{
-        res.render("quiz/result",score);
+        res.render("quiz/result",{score:score});
     }
     
 
