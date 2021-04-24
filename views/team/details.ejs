@@ -91,7 +91,7 @@
 						<%= team.response.team.name %>
 					</h2>
 					<br />
-					<input hidden="hidden" id="favoriteStatus" value="<%= favorite%>">
+					<input  hidden="hidden" id="favoriteStatus" value="<%= favorite%>">
 					<form id="voteChoice" action="/team/favorite?teamID=<%= team.response.team.id%>" method="POST"
 						class="form">
 
@@ -157,7 +157,9 @@
 					<script type="text/javascript">
 
 						$(document).ready(function () {
-							if ($("#favoriteStatus").val) {
+							
+							if ($("#favoriteStatus").val() == "t") {
+								
 								$("#favBtn").addClass("active")
 							}
 							$("#favBtn").click(function () {

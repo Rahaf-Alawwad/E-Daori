@@ -54,12 +54,12 @@ router.get("/team/details",isLoggedIn, (req, res) => {
         result.favoriteTeams.forEach(element => {
           if (flag && element.teamId == req.query.teamID) {
             flag = false;
-            res.render('team/details', { team: team.data, player: player.data, favorite:true })
+            res.render('team/details', { team: team.data, player: player.data, favorite:"t" })
             /*res.json({response : response.data})  */
           }
         });
         if (flag) {
-          res.render("team/details", { team: team.data, player: player.data, favorite:false });
+          res.render("team/details", { team: team.data, player: player.data, favorite:"f" });
         }
 
       }).catch(err => console.log(err))
