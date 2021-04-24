@@ -6,7 +6,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family:'Poppins',sans-serif;
+   
 }
+
 html{
     width:100%
 }
@@ -18,6 +20,7 @@ html{
     top: 0;
     left:0;
     width: 100%;
+    z-index:3;
 }
 #main-nav *{
     flex-grow: 1;

@@ -24,6 +24,8 @@ const userSchema = mongoose.Schema({
       type: String,
         
     },
+    isAdmin: Boolean
+    ,
     favoriteTeams:[{name: String,logo:String}]
     ,
 
