@@ -5,11 +5,12 @@
         <div class="content-profile">
             <div class="col1-profile"  >
                 <img src="<%=result.image %>" alt="">
-    
-                <h1> <%=result.name %></h1>
+                <div>
+                <h1 style="display: inline-block"> <%=result.name %></h1> <button style="background-color:transparent; outline: none; border:none; width: 20px;height: 20px; display:inline" onclick=" location.href = '/profile/edit' "><img style="width: 20px;height: 20px;" src="../../images/icons/edit.png">
+                </button>
+            </div>
                 <h1><%=result.emailAddress %></h1>
                 <div class="row1">
-                    <a href="/profile/edit"> Edit profile</a>
                     <a href="/profile/delete"> Deactivate account </a>
                 </div>
                 

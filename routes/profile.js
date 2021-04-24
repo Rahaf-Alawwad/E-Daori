@@ -49,10 +49,6 @@ var methodOverride = require('method-override');
 router.use(methodOverride('_method'))
 
 
-router.get("/profile/auth",isAdmin,(req, res) => {
-    res.redirect("/admin/index");
-
-})
 
 router.get("/profile",isLoggedIn,(req, res) => {
     let myvotes=[]
@@ -83,18 +79,22 @@ router.get("/profile/edit", isLoggedIn, (req, res) => {
 
 router.post("/profile/edit", isLoggedIn,upload.single("image"),(req, res) => {
 let userupdate= new User(req.body)
-console.log(req.body);
-console.log(req.file);
-// userupdate.image= "images/user/"+req.file.filename;
 
+  console.log("req"+req.body)
     User.findByIdAndUpdate(req.user.id, req.body).then(result => {
-        // result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
+
+      if(req.file != null && req.file != undefined && req.file == ""){
+      userupdate.image= "images/user/"+req.file.filename;
+        result.updateOne({id: result.id},{$set: {image:"images/user/"+req.file.filename}}).then(()=>{
             //result.image= "images/user/"+req.file.filename;
             res.redirect('/profile');
-    //     })
-    //     .catch(err => {
-    //   res.redirect("/auth/signin");        })
-       
+        })
+      
+    
+        .catch(err => {
+      res.redirect("/auth/signin");        })
+    }else{ res.redirect('/profile');}
+
        
         
     }).catch(err => {
@@ -138,12 +138,10 @@ router.post("/edit/Password", isLoggedIn,(req, res) => {
 })
 
 
-router.delete("/profile/edit/delete", isLoggedIn,(req, res) => {
-    User.findById(req.user)
+router.post("/profile/edit/delete", isLoggedIn,(req, res) => {
+    User.findByIdAndUpdate(req.query.id, { $pull: { favoriteTeams :{ user: req.user }}}) 
         .then(() => {
-            Match.findByIdAndUpdate(req.query.id,
-                { $pull: { votes :{ user: req.user }}}) 
-                res.redirect("/profile/edit")
+         res.redirect("/profile/edit")
         })
         .catch (err => {
   res.redirect("/auth/signin");})

@@ -50,6 +50,12 @@ display: inline-block;
     height: min-content;
     margin: 30px;
     padding: 20px;
+    width:800px;
+
+}
+
+td, th{
+    color:white;
 }
 </style>
 
@@ -99,12 +105,12 @@ display: inline-block;
 
 
                                     <!-- edit btn -->
-                                    <td><button onclick=" location.href = '/admin/edit?id=<%= element.id %>' ">Edit
+                                    <td><button style="background-color:transparent; outline: none; border:none;" onclick=" location.href = '/admin/edit?id=<%= element.id %>' "><img src="../../images/icons/edit.png">
                                         </button></td>
                                     <!-- detele btn -->
                                     <td>
                                         <form action="/admin/delete?id=<%= element.id %>" method="POST">
-                                            <input type="submit" value="Delete" class="form__input__submit">
+                                            <input  type="image" src="../../images/icons/del.png" class="form__input__submit">
                                         </form>
                                     </td>
                                 </tr>
