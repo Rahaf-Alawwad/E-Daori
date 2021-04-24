@@ -78,7 +78,7 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
 
-  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+  User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
     .then(user => {
       console.log("User in fav"+user)
       res.redirect("/team/details?teamID=" + req.query.teamID)
