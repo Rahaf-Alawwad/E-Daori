@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
     },
     isAdmin: Boolean
     ,
-    favoriteTeams:[{name: String,logo:String}]
+    favoriteTeams:[{teamId:Number,name: String,logo:String}]
     ,
 
     voteMatchs:[{
