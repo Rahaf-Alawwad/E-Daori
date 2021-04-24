@@ -77,15 +77,13 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
-
   User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
     .then(user => {
       console.log("User in fav"+user)
       res.redirect("/team/details?teamID=" + req.query.teamID)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
-    .catch(err => {
-res.redirect("/auth/signin");    })
+    .catch(err => { res.redirect("/auth/signin");})
 })
 
 
