@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../css/teamDetails.css">
   <link rel="stylesheet" href="../css/quiz.css">
 
+  <title>E-Daori</title>
   <style>
     #search-btn-nav {
       background-color: transparent;
@@ -55,17 +56,33 @@
       background-color: white;
     }
 
+    body.color{
+      background-color: white;
+    }
+
+    * .colorBlack{
+      color:black;
+    }
   </style>
 
+<script>
+  // $(document).ready(function() {
+  //   function change(){
+  //     $("#toggle-btn-mode").toggleClass("active")
+  //     $("body").css('background-color','red');
+  //   }
+     
 
-
-  <title>E-Daori</title>
-
+  // });
+</script>
 </head>
 
 <body id ="main-body">
+ 
+    
+   
   <div class="switch">
-    <div id="toggle-btn-mode" onclick="this.classList.toggle('active');  $('body').css('background-color','white'); $('*').css('color','black') ">
+    <div id="toggle-btn-mode" onclick="$('#toggle-btn-mode').toggleClass('active'); $('body').toggleClass('color');$('*').toggleClass('colorBlack')">
     <div class="slider-round"></div>
     </div>
     </div>
