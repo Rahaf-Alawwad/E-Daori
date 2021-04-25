@@ -201,13 +201,13 @@ body::after{
       border-left:1px solid rgba(255, 255, 255, 0.5) ;
   }
   .home-container{
-    margin-top:10%;
+    margin-top:5%;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    z-index: 1;
+    /* flex-wrap: wrap;
+    z-index: 1; */
   }
 
 

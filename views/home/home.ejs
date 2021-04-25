@@ -8,7 +8,7 @@
     <% const element = response.response[index];%> 
    
 
-  <div class="card"  onclick=" location.href = '/match/details?matchID=<%= element.fixture.id %>' " data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+  <div class="card"  onclick=" location.href = '/match/details?matchID=<%= element.fixture.id %>' "  data-tilt>
 
     <div class="content">
       <div class="Row-img"> 
@@ -61,6 +61,16 @@
   <% }%>
 
 </div>
- 
+
+<script type="text/javascript" src="../public/vanilla-tilt.js"></script>
+<script type="text/javascript">
+	VanillaTilt.init(document.querySelector(".card"), {
+		max: 25,
+		speed: 400
+	});
+	
+	//It also supports NodeList
+	VanillaTilt.init(document.querySelectorAll(".card"));
+</script>
  
   <!-- end -->

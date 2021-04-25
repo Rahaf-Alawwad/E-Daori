@@ -20,20 +20,20 @@ function getDate(currentDate, addDays) {
 // get matches for today
 router.get("/home/current", (req, res) => {
   let currrentDate = getDate(new Date(),0)
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {date: currrentDate,  league: '307',  season: '2020'},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
-
   // const options = {
   //   method: 'GET',
-  //   url: 'http://www.json-generator.com/api/json/get/coDSWWSOmq?indent=2',
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  //   params: {date: currrentDate,  league: '307',  season: '2020'},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
   // };
+
+  const options = {
+    method: 'GET',
+    url: 'http://www.json-generator.com/api/json/get/coDSWWSOmq?indent=2',
+  };
 
   axios.request(options).then(function (response) {
  
@@ -56,20 +56,20 @@ router.get("/home/last", (req, res) => {
   let toDate = getDate(currentDate, -1);
   let fromDate = getDate(currentDate, -8)
 
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {league: '307', season: '2020', from: fromDate, to: toDate},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
   // const options = {
   //   method: 'GET',
-  //   url: ' http://www.json-generator.com/api/json/get/bSaXFoeTCa?indent=2',
-
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  //   params: {league: '307', season: '2020', from: fromDate, to: toDate},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
   // };
+  const options = {
+    method: 'GET',
+    url: ' http://www.json-generator.com/api/json/get/bSaXFoeTCa?indent=2',
+
+  };
 
   axios.request(options).then(function (response) {
 
@@ -88,20 +88,20 @@ router.get("/home/next", (req, res) => {
   let fromDate = getDate(currentDate, 1);
   let toDate = getDate(currentDate, 8)
 
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {league: '307', season: '2020', from: fromDate, to: toDate},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
   // const options = {
   //   method: 'GET',
-  //   url: ' http://www.json-generator.com/api/json/get/bZHPYNcOaa?indent=2',
-
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  //   params: {league: '307', season: '2020', from: fromDate, to: toDate},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
   // };
+  const options = {
+    method: 'GET',
+    url: ' http://www.json-generator.com/api/json/get/bZHPYNcOaa?indent=2',
+
+  };
 
 
   axios.request(options).then(function (response) {
@@ -229,21 +229,21 @@ router.post("/search", isLoggedIn, (req, res) => {
 // get all match not started that matchs with user favo 
 router.get('/favoriteteams', (req, res) => {
   let favTeam = [];
-  // const options = {
-  //   method: 'GET',
-  //   url: 'http://www.json-generator.com/api/json/get/cbewZOFixu?indent=2',
-  // };
-  // http://www.json-generator.com/api/json/get/cbewZOFixu?indent=2
-
   const options = {
     method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {league: '307', season: '2020', status: 'NS'},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
+    url: 'http://www.json-generator.com/api/json/get/cbewZOFixu?indent=2',
   };
+  http://www.json-generator.com/api/json/get/cbewZOFixu?indent=2
+
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  //   params: {league: '307', season: '2020', status: 'NS'},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
+  // };
 
 
   axios.request(options).then(function (response) {

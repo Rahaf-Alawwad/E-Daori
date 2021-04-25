@@ -37,21 +37,21 @@ let flag = true;
 let arr;
 let teamOne=0,teamTwo=0,tie=0;
 
-  // const options = {
-  //   method: 'GET',
-  //   url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
-  // };
-
-  
   const options = {
     method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
-    params: {id: req.query.matchID},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
+    url: 'http://www.json-generator.com/api/json/get/cgsmbUXZki?indent=2',
   };
+
+  
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  //   params: {id: req.query.matchID},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
+  // };
 
   axios.request(options).then(function (response) {
     
@@ -81,7 +81,9 @@ let teamOne=0,teamTwo=0,tie=0;
             (Math.round(((tie/match.votes.length)*100)))
           ]
           console.log(arr);
-          res.render("match/detailsAfterVote", { response: response.data, votedCount: arr});
+          console.log(arr.length);
+
+          res.render("match/detailsAfterVote", { response: response.data, votedCount: arr , numVote: arr.length});
           
         }
   
