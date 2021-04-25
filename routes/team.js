@@ -50,16 +50,16 @@ router.get("/team/details",isLoggedIn, (req, res) => {
       console.log(req.query.teamID)
       
       User.findById(req.user.id).then(result => {
-       console.log(result)
+       
         result.favoriteTeams.forEach(element => {
-          if (flag && element === req.query.teamID) {
+          if (flag && element.teamId == req.query.teamID) {
             flag = false;
-            res.render('team/favodetails', { team: team.data, player: player.data })
+            res.render('team/details', { team: team.data, player: player.data, favorite:"t" })
             /*res.json({response : response.data})  */
           }
         });
         if (flag) {
-          res.render("team/details", { team: team.data, player: player.data });
+          res.render("team/details", { team: team.data, player: player.data, favorite:"f" });
         }
 
       }).catch(err => console.log(err))
@@ -78,6 +78,9 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
   User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
+
+ // User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+ //master
     .then(user => {
       console.log("User in fav"+user)
       res.redirect("/team/details?teamID=" + req.query.teamID)
