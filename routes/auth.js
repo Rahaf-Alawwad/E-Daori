@@ -55,6 +55,7 @@ router.post('/auth/signup',upload.single('image') ,(req, res) => {
   
   let newUser = new User(req.body);
   
+
   let hash = bcrypt.hashSync(req.body.password, salt);
   newUser.password = hash;
   if(req.file == null || req.file == undefined || req.file == ""){

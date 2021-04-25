@@ -46,9 +46,9 @@ router.get("/team/details",isLoggedIn, (req, res) => {
       }
     };
     
-
     axios.request(options2).then(function (player) {
-
+      console.log(req.query.teamID)
+      
       User.findById(req.user.id).then(result => {
        
         result.favoriteTeams.forEach(element => {
@@ -77,15 +77,16 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
+  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
 
-  User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+ // User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+ //master
     .then(user => {
       console.log("User in fav"+user)
       res.redirect("/team/details?teamID=" + req.query.teamID)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
-    .catch(err => {
-res.redirect("/auth/signin");    })
+    .catch(err => { res.redirect("/auth/signin");})
 })
 
 
