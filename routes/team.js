@@ -14,41 +14,40 @@ const isLoggedIn = require("../helper/isLoggedIn");
 router.get("/team/details",isLoggedIn, (req, res) => {
   let flag = true
 
+   const options = {
+     method: 'GET',
+     url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'
+   }
   // const options = {
   //   method: 'GET',
-  //   url: 'http://www.json-generator.com/api/json/get/cfzvjdcvdu?indent=2'
+  //   url: 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics',
+  //   params: {league: '307', season: '2020', team: req.query.teamID},
+  //   headers: {
+  //     'x-rapidapi-key': process.env.APIKey,
+  //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+  //   }
   // };
-
-  const options = {
-    method: 'GET',
-    url: 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics',
-    params: {league: '307', season: '2020', team: req.query.teamID},
-    headers: {
-      'x-rapidapi-key': process.env.APIKey,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-    }
-  };
   axios.request(options).then(function (team) {
     // res.render("team/details" , {team : team.data });
 
 
+     const options2 = {
+       method: 'GET',
+       url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'
+     };
     // const options2 = {
     //   method: 'GET',
-    //   url: 'http://www.json-generator.com/api/json/get/bVGcPdYhQi?indent=2'
+    //   url: 'https://api-football-v1.p.rapidapi.com/v3/players',
+    //   params: {team: req.query.teamID, league: '307', season: '2020'},
+    //   headers: {
+    //     'x-rapidapi-key': process.env.APIKey,
+    //     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+    //   }
     // };
-    const options2 = {
-      method: 'GET',
-      url: 'https://api-football-v1.p.rapidapi.com/v3/players',
-      params: {team: req.query.teamID, league: '307', season: '2020'},
-      headers: {
-        'x-rapidapi-key': process.env.APIKey,
-        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-      }
-    };
     
-
     axios.request(options2).then(function (player) {
-
+      console.log(req.query.teamID)
+      
       User.findById(req.user.id).then(result => {
        
         result.favoriteTeams.forEach(element => {
@@ -77,15 +76,16 @@ router.get("/team/details",isLoggedIn, (req, res) => {
 
 
 router.post("/team/favorite",isLoggedIn, (req, res) => {
+  User.findOneAndUpdate(req.user.id, { $push: { favoriteTeams:  [{name: req.body.teamName,logo:req.body.img}] }})
 
-  User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+ // User.findByIdAndUpdate(req.user.id, { $push: { favoriteTeams:  [{teamId: req.body.teamId,name: req.body.teamName,logo:req.body.img}] }})
+ //master
     .then(user => {
       console.log("User in fav"+user)
       res.redirect("/team/details?teamID=" + req.query.teamID)
       /* res.render('team/favoDetails', {response : response.data}) */
     })
-    .catch(err => {
-res.redirect("/auth/signin");    })
+    .catch(err => { res.redirect("/auth/signin");})
 })
 
 
