@@ -62,6 +62,9 @@ body::after{
     background: linear-gradient(#2196f3,#e91e63);
     clip-path: circle(20% at 10% 40%);
 }
+body.active{
+background: aliceblue;
+}
 .container{
     margin-top:10%;
     position: relative;

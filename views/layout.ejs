@@ -23,6 +23,38 @@
       background-color: transparent;
       border: 1px solid #26a69a;
     }
+
+    .switch{
+      position: absolute;
+      top:15%;
+   
+      transform: translate(-50%,-50%);
+    }
+    
+    #toggle-btn-mode{
+      background-color: white;
+      width:80px;
+      height:40px;
+      border-radius: 30px;
+      padding: 5px;
+      transition: all 300ms ease-in-out;
+    }
+
+    #toggle-btn-mode > .slider-round{
+      width: 30px;
+      height: 30px;
+      background-color: rgb(34, 34, 34);
+      border-radius: 50%;
+      transition: all 300ms ease-in-out;
+    }
+    #toggle-btn-mode.active{
+      background-color: rgb(34, 34, 34);
+    }
+    #toggle-btn-mode.active > .slider-round{
+      margin-left: 40px;
+      background-color: white;
+    }
+
   </style>
 
 
@@ -31,9 +63,13 @@
 
 </head>
 
-<body>
+<body id ="main-body">
+  <div class="switch">
+    <div id="toggle-btn-mode" onclick="this.classList.toggle('active');  $('body').css('background-color','white'); $('*').css('color','black') ">
+    <div class="slider-round"></div>
+    </div>
+    </div>
 
-  <script></script>
   <div class="all">
 
     <nav id="main-nav" class="navbar navbar-expand-lg">
@@ -59,7 +95,7 @@
             <a class="nav-link" href="/quiz/index">Quizzes</a>
           </li>
          
-          
+
 
     <% if(currentUser){ %>
       <li class="nav-item">
