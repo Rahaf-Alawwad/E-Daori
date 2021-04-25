@@ -17,16 +17,10 @@
             </div>
             <div class="col2-profile">
                 <h1>My Favorite Teams</h1>
-
-              
                 <% result.favoriteTeams.forEach(team =>{ %>
-
-                    <div class="teaminfo">
+                    <div class="teaminfo" >
                         <h5><%= team.name %></h5>
                         <img class="teaminfo-logo" src="<%=team.logo %>" alt="">
-                        
-
-                        
                     </div>
                     <% })%>
                 
