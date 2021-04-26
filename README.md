@@ -26,6 +26,9 @@
 * HTML
 * CSS
 * JavaScript
+* Bootstrap
+* Materialize 
+* [Football API](https://www.api-football.com/)
 * [Mockplus WireFrame Tool](https://www.mockplus.com)
 * Node js
 * MongoDB

@@ -210,6 +210,7 @@ background: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
+  
     /* flex-wrap: wrap;
     z-index: 1; */
   }
@@ -282,6 +283,5 @@ background: aliceblue;
   body.color{
     background-color: white;
   }
-
 
 

@@ -20,6 +20,14 @@
     .form-group{
       width: 288px;
     }
+    .container .card{
+    
+    height: 600px;
+    margin: 30px;
+    padding: 20px;
+    width:400px;
+
+}
 
  </style>
  
@@ -31,12 +39,12 @@
            <!-- general form elements -->
            <div class="card card-primary">
              <div class="card-header">
-               <h3 class="card-title">Create new account</h3>
+               <h3 style="font-weight:800;font-size:45px; text-align:center;" class="card-title sign">Create new account</h3>
              </div>
              <!-- /.card-header -->
              <!-- form start -->
              <form action="/auth/signup" method="POST" class="form" enctype="multipart/form-data">
-               <div class="card-body">
+               <div style="padding:10px" class="card-body">
                  <div class="form-group">
                      <label for="exampleInputName">Username</label>
                      <input  type="text" name="name"  style="color: white;" class="form-control" id="exampleInputName" placeholder="Enter name">
