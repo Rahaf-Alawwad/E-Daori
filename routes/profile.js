@@ -122,13 +122,14 @@ router.post("/profile/edit", isLoggedIn, upload.single("image"), (req, res) => {
 
 
 router.get("/edit/Password", isLoggedIn, (req, res) => {
-
+  console.log("herrrrrrrrrrrrrrrrrrrre")
   res.render("profile/Password");
 
 })
 
 
 router.post("/edit/Password", isLoggedIn, (req, res) => {
+  console.log("hhhhhhhhhhhh")
   if (req.user.verifyPassword(req.body.password_old)) {
     if (req.body.password_new == req.body.password_varify) {
 
@@ -158,8 +159,7 @@ router.post("/edit/Password", isLoggedIn, (req, res) => {
 
 
 router.get("/profile/edit/delete", isLoggedIn, (req, res) => {
-  console.log("USEEEEEEEEEEEERRRRRRRRRR "+req.query.id);
-  console.log("USEEEEEEEEEEEERRRRRRRRRR "+req.user.id);
+
   User.findByIdAndUpdate(req.user.id, { $pull: { favoriteTeams: { teamId: req.query.id } } })
     .then(() => {
       res.redirect("/profile/edit")
