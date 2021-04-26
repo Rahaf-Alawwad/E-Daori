@@ -96,8 +96,9 @@ router.get("/profile/edit", isLoggedIn, (req, res) => {
 router.post("/profile/edit", isLoggedIn, upload.single("image"), (req, res) => {
   let userupdate = new User(req.body)
 
-  console.log("req" + req.body)
-  User.findByIdAndUpdate(req.user.id, req.body).then(result => {
+
+ 
+  User.findByIdAndUpdate(req.user.id, {name:req.body.name}).then(result => {
 
     if (req.file != null && req.file != undefined && req.file == "") {
       userupdate.image = "images/user/" + req.file.filename;
@@ -156,12 +157,15 @@ router.post("/edit/Password", isLoggedIn, (req, res) => {
 })
 
 
-router.post("/profile/edit/delete", isLoggedIn, (req, res) => {
-  User.findByIdAndUpdate(req.query.id, { $pull: { favoriteTeams: { user: req.user } } })
+router.get("/profile/edit/delete", isLoggedIn, (req, res) => {
+  console.log("USEEEEEEEEEEEERRRRRRRRRR "+req.query.id);
+  console.log("USEEEEEEEEEEEERRRRRRRRRR "+req.user.id);
+  User.findByIdAndUpdate(req.user.id, { $pull: { favoriteTeams: { teamId: req.query.id } } })
     .then(() => {
       res.redirect("/profile/edit")
     })
     .catch(err => {
+      console.log(err)
       res.redirect("/auth/signin");
     })
 })
