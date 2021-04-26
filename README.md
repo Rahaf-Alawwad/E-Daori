@@ -4,7 +4,7 @@
 
 <p> Home page of E-Daori website </p>
 
-<img src="./public/images/Logo/logo.png" >
+<img src="./public/images/Logo/logo.JPG" >
 
 
 # How to start?
