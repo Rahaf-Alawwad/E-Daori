@@ -1,17 +1,18 @@
-# [The E-Daori]() 
+# [The E-Daori](https://edaoir.herokuapp.com/auth/signin) 
 
 <p> E-Daori website is the destination for every saudi soccer fan, it provides an easy (and live) access to all of your favorite teams' scores, upcoming matches, players statistics and so much more! </p>
 
 <p> Home page of E-Daori website </p>
 
-<img src="./public/images/logo/logo.png" >
+<img src="./public/images/Logo/logo.png" >
 
 
 # How to start?
-1. Enter The [E-Daori]() website.
+1. Enter The [E-Daori](https://edaoir.herokuapp.com/auth/signin) website.
 2. Naviagte the home page for: 
 <br><br>
 <img src="./public/images/homePage.JPG" height="250" width="400">
+
 * Today's matches.
 
 * Last and next week's matches.
