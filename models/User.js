@@ -44,6 +44,8 @@ const userSchema = mongoose.Schema({
 
 // VerifyPassword
 userSchema.methods.verifyPassword = function(password){
+    console.log("pass: ",password)
+    console.log("this.pass: ",this.password)
     return bcrypt.compareSync(password, this.password);
 } 
 
